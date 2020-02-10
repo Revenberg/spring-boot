@@ -1,0 +1,11 @@
+info\revenberg\domain\AuditModel.class
+info\revenberg\domain\Song.class
+info\revenberg\domain\line\ImageProcess.class
+info\revenberg\domain\ResourceSupport.class
+info\revenberg\domain\RestErrorInfo.class
+info\revenberg\domain\line\ImageDefinition.class
+info\revenberg\domain\Line.class
+info\revenberg\domain\Bundle.class
+info\revenberg\domain\line\FindLinesInImage.class
+info\revenberg\domain\TempFile.class
+info\revenberg\domain\Vers.class
