@@ -1,4 +1,4 @@
-package Bundle;
+package info.revenberg.domain;
 
 import static org.junit.Assert.assertEquals;
 import info.revenberg.domain.Bundle;
