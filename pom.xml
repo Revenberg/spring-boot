@@ -13,6 +13,7 @@
         <module>loader</module>
         <module>maintain</module>
         <module>songs</module>
+        <module>hibernate</module>
         <module>configuration-service</module>
     </modules>
 

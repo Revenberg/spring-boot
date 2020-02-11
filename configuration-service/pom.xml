@@ -6,9 +6,9 @@
         <artifactId>spring-boot</artifactId>
         <version>1.0</version>
     </parent>
-    <groupId>info.revenberg</groupId>
+
     <artifactId>centralized-configuration-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+
     <name>centralized-configuration-service</name>
     <description>centralized configuration service</description>
 

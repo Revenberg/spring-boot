@@ -1,0 +1,18 @@
+<head>
+    <title>Bundle list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"  href="../../css/main.css" th:href="@{/css/main.css}" />
+    <script type="text/javascript" src="/js/dropdown.js"></script>
+</head>
+
+<a href="http://40.122.30.210:8090/swagger-ui.html">swagger-ui</a>
+
+<div class="dropdown">
+  <button class="dropbtn" id="bundledropbtn1">Dropdown Bundel</button>
+  <div class="dropdown-content" >
+        <div th:each="bundle : ${bundles}">
+            <a th:href="@{/song(bundleid=${bundle.id})}" th:id="${bundle.id}"><span th:text="${bundle.name}"></span></a>
+        </div>
+    </div>
+</div>
+

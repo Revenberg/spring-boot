@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.revenberg.info">
+
+<head>
+  <title>Mijn scherm</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/stsm.css" th:href="@{/css/stsm.css}" />
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/main.css" th:href="@{/css/main.css}" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/search8.js"></script>
+  <script type="text/javascript" src="/js/dropdown8.js"></script>
+  <script type="text/javascript" src="/js/checkbox8.js"></script>
+</head>
+
+<body>
+
+  <div>
+    <img src="../../images/stsmlogo.png" alt="STSM logo" title="STSM logo" th:src="@{/images/stsmlogo.png}"
+      th:alt-title="#{title.application}" />
+  </div>
+
+  <div class="seedstarterlist" th:unless="${#lists.isEmpty(allSeedStarters)}">
+    
+      <h2 th:text="#{title.list}">List of Seed Starters</h2>
+      <!---
+      <table>
+        <thead>
+          <tr>
+            <th th:text="#{seedstarter.covered}">Covered</th>
+            <th th:text="#{seedstarter.rows}">Rows</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="sb : ${allSeedStarters}">
+-->
+<!--            <td th:text="#{|bool.${sb.covered}|}">yes</td>
+                <td th:text="${#strings.arrayJoin(
+                             #messages.arrayMsg(
+                               #strings.arrayPrepend(sb.features,'seedstarter.feature.')),
+                             ', ')}">Electric Heating, Turf</td>
+            <td>
+              -->
+              <table>
+                <tbody>
+                  <tr th:each="row,rowStat : ${sb.rows}">
+                    <td th:text="${rowStat.count}">1</td>
+<!--                    <td th:text="${row.variety.name}">Thymus Thymi</td>
+                    <td th:text="${row.seedsPerCell}">12</td>
+                    -->
+                    <!--
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      -->
+    </div>
+
+    // begin new mijn test gedeelte
+    <div>
+    
+      <h2 th:text="#{title.new}">Add new Song</h2>
+
+      <form action="#" th:action="@{/seedstartermng}" th:object="${seedStarter}" method="post">
+        <fieldset>
+          <p>Id: <input type="text" th:field="*{id}" /></p>
+          <p>Bundleid: <input type="text" th:field="*{bundleid}" id="bundleid" /></p>
+          <p>Songid: <input type="text" th:field="*{songid}" id="songid" /></p>          
+          <p>Versesid: <input type="text" th:field="*{versesid}" id="versesid" /></p>
+
+          <legend th:text="#{seedstarter.data}">Seed Starter Data</legend>
+          <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+          </ul>
+
+          <div>
+            <label for="bundle" th:field="*{bundle}" th:text="#{seedstarter.bundle}">Type</label>
+            <select onchange="getSongs(this);">              
+              <option th:each="bundle : ${allBundles}" th:value="${bundle.id}" th:text="${bundle.name}">bundle</option>
+            </select>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn" th:field="*{bundle}" id="bundledropbtn" onclick="return false;">Dropdown Bundel</button>
+            <div class="dropdown-content" id="dropdown-content-bundle">
+                  <div th:each="bundle : ${allBundles}">
+                        <a th:href="|javascript:retrieveSongs(${bundle.id})|" th:id="|bundle_${bundle.id}|"><span th:text="${bundle.name}"></span></a>
+                  </div>
+              </div>
+          </div>
+
+<!-- th:field="*{versesvalue}" 
+          <div th:each="vers1 : ${allVerses}">
+            <input type="checkbox" th:value="${vers1.id}" />
+            <label th:for="${#ids.prev('vers1')}" th:text="${vers1.name}">Europe</label>
+         </div>
+-->
+<!--
+          <div>
+            <ul>
+              <li th:each="vers2 : ${allVerses}">
+                <input type="checkbox" th:field="*{versesvalue}" th:value="${vers2.id}" /><span th:text="${vers2.name}"></span>
+              </li>
+            </ul>
+          </div>
+-->
+          <!--
+          <div>
+            <ul>
+              <li th:each="vers : ${allVerses}">
+                <input type="checkbox" th:field="*{features}" th:value="${vers.id}" /><span th:text="${vers.name}"></span>
+                  <input type="checkbox" th:field="*{features}" th:value="${feat}" />
+                <label th:for="${#ids.prev('features')}" th:text="#{${'seedstarter.feature.' + feat}}">Electric Heating</label>
+</li>
+            </ul>
+          </div>
+          -->
+  
+
+          
+  <span class="subtitle">Song list form</span>
+  <div class="listBlock">
+      <!-- Results block -->
+      <div id="resultsBlockSongs">
+      
+      </div>
+  </div>
+
+  <span class="subtitle">Verses list form</span>
+  <div class="listBlock">
+      <!-- Results block -->
+      <div id="resultsBlockVerses">
+      
+      </div>
+  </div>
+
+<div th:fragment="resultsListSongs" th:unless="${#lists.isEmpty(songs)}" class="results-block">
+  <div>    
+    <select  onchange="getVerses(this);">
+      <option th:each="song : ${songs}" th:value="${song.id}" th:text="${song.name}">Wireframe</option>
+    </select>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn" id="songdropbtn" onclick="return false;">Dropdown Songs</button>
+    <div class="dropdown-content" id="dropdown-content-song">
+          <div th:each="song : ${songs}">
+                <a th:href="|javascript:retrieveVerses(${song.id})|" th:id="|song_${song.id}|"><span th:text="${song.name}"></span></a>
+          </div>
+      </div>
+  </div>
+</div>  
+
+<div th:fragment="resultsListVerses"  class="results-block" th:unless="${#lists.isEmpty(allVerses)}" >
+  <fieldset>
+    <div>
+    <!-- select all boxes -->
+    <input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
+    <ul>
+      <li th:each="vers2 : ${allVerses}">
+        <input type="checkbox" th:id="|vers-${vers2.id}|" th:value="|${vers2.title}|" onclick="checkbox(this)" onload="checkbox(this)" />
+        <span th:text="${vers2.name}"></span>
+        <img th:src="@{/rest/v1/vers/{image}/scalledimage?size=400(image=${vers2.id})}">
+      </li>
+    </ul>
+    </fieldset>
+</div>
+
+  <!---
+  <ul>
+    <li th:each="checkboxValue: ${multiCheckboxAllValues}">
+      <input type="checkbox" 
+          th:field="*{multiCheckboxSelectedValues}"
+          th:value="${checkboxValue}" />
+      <label 
+          th:for="${#ids.prev('multiCheckboxSelectedValues')}"
+          th:text="${checkboxValue}"></label>
+    </li>
+  </ul>
+-->
+<!--
+  th:field="*{versesvalue}"
+
+
+
+  <table>
+        <thead>
+            <tr>
+                <th th:text="#{results.vers.title}">Title</th>
+                <th th:text="#{results.vers.image}">Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+              <tr th:each="vers2 : ${verses}">
+                <td><input type="checkbox" checked th:field="*{versesvalue}" th:value="${vers2.id}" /><span th:text="${vers2.title}"></span></td>
+                <td><img th:src="@{/rest/v1/vers/{image}/scalledimage?size=400(image=${vers2.id})}"></td>  
+          </tr>
+        </tbody>
+
+
+    </table>  
+      -->
+      <div class="submit" >
+      <button type="submit" name="save" th:text="#{seedstarter.create1}">Add Seed Starter</button>    
+    </div>
+  </fieldset>
+    
+  </div>    
+
+</form>
+
+    // new mijn test gedeelte end
+
+  </body>
+</html>

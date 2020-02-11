@@ -1,0 +1,19 @@
+<head>
+    <title>Song list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"  
+      href="../../css/main.css" th:href="@{/css/main.css}" />
+    <script type="text/javascript" src="/js/dropdown.js"></script>
+</head>
+
+
+
+<div class="dropdown">
+    <button class="dropbtn" id="songdropbtn">Dropdown Songs</button>
+    <div class="dropdown-content" >
+          <div th:each="song : ${songs}">
+              <a th:onclick="|javascript:myFunctionSongDropbtn(${song.id})|" th:id="${song.id}"><span th:text="${song.name}"></span></a>
+          </div>
+      </div>
+  </div>
+  

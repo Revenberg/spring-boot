@@ -1,0 +1,6 @@
+<form action="#" th:action="@{/addbundle}" th:object="${bundle}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    <input type="submit" value="Add bundle">   
+</form>
