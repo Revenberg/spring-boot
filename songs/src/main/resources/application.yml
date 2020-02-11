@@ -75,3 +75,4 @@ logging:
 endpoints:
   restart:
     enabled: true
+    
