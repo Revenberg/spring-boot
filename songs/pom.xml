@@ -259,10 +259,20 @@
                     <jvmArguments>
 							-Xms512m
 							-Xmx2048m
-					</jvmArguments>
+                    </jvmArguments>
+                    <fork>true</fork>
+                    <skip>false</skip>
                 </configuration>
+                <executions>
+                    <execution>
+                      <goals>
+                        <goal>repackage</goal>
+                      </goals>
+                    </execution>
+                  </executions>
             </plugin>
         </plugins>
     </build>
+    
 </project>
 
