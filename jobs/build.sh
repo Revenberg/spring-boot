@@ -1,5 +1,6 @@
 cd ~
-mkdir ~/songs/db -p 2>/dev/null 2>/dev/null
+sudo mkdir /var/songs/db -p 2>/dev/null
+sudo chown -R sander:sander /var/songs
 
 sudo rm /var/log/sander/ -rf
 sudo mkdir /var/log/sander/
