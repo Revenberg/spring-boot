@@ -17,10 +17,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableAutoConfiguration // Sprint Boot Auto Configuration
-//@ComponentScan(basePackages = "info.revenberg.song")
-@ComponentScan(basePackages = "info.revenberg.*")
+@ComponentScan(basePackages = "info.revenberg.song")
 @ConfigurationPropertiesScan("info.revenberg.song.properties")
-@EnableJpaRepositories("info.revenberg.song.dao.jpa") // To segregate Sqlite and JPA repositories.
+@EnableJpaRepositories
+//("info.revenberg.song.dao.jpa") // To segregate Sqlite and JPA repositories.
 public class Application extends SpringBootServletInitializer {
 
     private static final Class<Application> applicationClass = Application.class;

@@ -1,10 +1,10 @@
 
 #!/bin/sh
 process=`ps -ef | grep -v awk | awk -e '/java.*maintain/ { print $2 }'`
-kill ${process}
+kill ${process} 2>/dev/null
 sleep 5s
 process=`ps -ef | grep -v awk | awk -e '/java.*maintain/ { print $2 }'`
-kill ${process}
+kill ${process} 2>/dev/null
 
 echo start maintain
 

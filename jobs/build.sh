@@ -1,9 +1,9 @@
 #!/bin/sh
 process=`ps -ef | grep -v awk | awk -e '/java.*/ { print $2 }'`
-kill ${process}
+kill ${process} 2>/dev/null
 sleep 5s
 process=`ps -ef | grep -v awk | awk -e '/java.*/ { print $2 }'`
-kill ${process}
+kill ${process} 2>/dev/null
 
 cd ~
 mkdir ~/songs/db -p 2>/dev/null 2>/dev/null
@@ -17,7 +17,8 @@ rm -rf ~/configuration-service
 git clone https://github.com/Revenberg/configuration-service.git
 cd ~/configuration-service
 mvn clean package
-nano mvn spring-boot:run &
+nohup mvn spring-boot:run &
+cd ~
 
 echo build spring-boot
 rm -rf ~/spring-boot
