@@ -1,4 +1,6 @@
 cd ~
+mkdir ~/songs/db -p 2>/dev/null 2>/dev/null
+
 sudo rm /var/log/sander/ -rf
 sudo mkdir /var/log/sander/
 sudo chown sander:sander /var/log/sander/
