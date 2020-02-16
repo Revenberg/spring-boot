@@ -265,14 +265,13 @@
                 </configuration>
                 <executions>
                     <execution>
-                      <goals>
-                        <goal>repackage</goal>
-                      </goals>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
                     </execution>
-                  </executions>
+                </executions>
             </plugin>
         </plugins>
     </build>
-    
-</project>
 
+</project>
