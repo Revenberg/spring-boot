@@ -8,7 +8,9 @@ kill ${process}
 
 echo start configuration-service
 
-cd ~/spring-boot/configuration-service
+cd ~/configuration-service
+git pull
+mvn clean package
 nohup mvn spring-boot:run > /var/log/sander/configuration-service.log &
 
 cd ~

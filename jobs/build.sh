@@ -1,10 +1,23 @@
-cd ~
-sudo mkdir /var/songs/db -p 2>/dev/null
-sudo chown -R sander:sander /var/songs
+#!/bin/sh
+process=`ps -ef | grep -v awk | awk -e '/java.*/ { print $2 }'`
+kill ${process}
+sleep 5s
+process=`ps -ef | grep -v awk | awk -e '/java.*/ { print $2 }'`
+kill ${process}
 
+cd ~
+mkdir ~/songs/db -p 2>/dev/null 2>/dev/null
 sudo rm /var/log/sander/ -rf
 sudo mkdir /var/log/sander/
 sudo chown sander:sander /var/log/sander/
+
+
+echo configuration-service
+rm -rf ~/configuration-service
+git clone https://github.com/Revenberg/configuration-service.git
+cd ~/configuration-service
+mvn clean package
+nano mvn spring-boot:run &
 
 echo build spring-boot
 rm -rf ~/spring-boot
