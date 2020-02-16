@@ -3,7 +3,7 @@ cd ~
 mkdir ~ songs 2>/dev/null
 
 cd ~/spring-boot
-pull
+git pull
 mvn clean package
 
 cd ~
