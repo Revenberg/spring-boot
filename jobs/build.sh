@@ -16,7 +16,7 @@ echo configuration-service
 rm -rf ~/configuration-service
 git clone https://github.com/Revenberg/configuration-service.git
 cd ~/configuration-service
-mvn clean package
+mvn clean install package
 nohup mvn spring-boot:run &
 cd ~
 
