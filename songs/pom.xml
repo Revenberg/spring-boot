@@ -13,6 +13,7 @@
     <properties>
         <start-class>info.revenberg.song.Application</start-class>
         <hibernate.version>4.3.8.Final</hibernate.version>
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
     </properties>
 
     <dependencies>
