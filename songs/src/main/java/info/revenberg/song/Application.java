@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = { "info.revenberg.song", "info.revenberg.domain" } )
 @ConfigurationPropertiesScan("info.revenberg.song.properties")
 @EnableJpaRepositories( "info.revenberg.song.dao.jpa" ) // To segregate Sqlite and JPA repositories.
-@EntityScan
+@EntityScan(basePackages = { "info.revenberg.domain" })
 public class Application extends SpringBootServletInitializer {
 
     private static final Class<Application> applicationClass = Application.class;
