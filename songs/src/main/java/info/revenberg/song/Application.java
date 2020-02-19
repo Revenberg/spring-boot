@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 
 @SpringBootApplication
+@Configuration
 @EnableAutoConfiguration // Sprint Boot Auto Configuration
 @ComponentScan(basePackages = { "info.revenberg.song", "info.revenberg.domain" } )
 @ConfigurationPropertiesScan("info.revenberg.song.properties")
