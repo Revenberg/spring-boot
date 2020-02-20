@@ -2,6 +2,7 @@ package info.revenberg.song;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -14,12 +15,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * This is the main Spring Boot application class. It configures Spring Boot, JPA, Swagger
  */
 
-@SpringBootApplication(scanBasePackages = { "info.revenberg.domain" })
+@SpringBootApplication(scanBasePackages = { "info.revenberg.song" })
 //@EnableAutoConfiguration // Sprint Boot Auto Configuration
-@ComponentScan(basePackages = { "info.revenberg.song" } )
+//@ComponentScan(basePackages = { "info.revenberg.song" } )
 @ConfigurationPropertiesScan("info.revenberg.song.properties")
 @EnableJpaRepositories( "info.revenberg.song.dao.jpa" ) // To segregate Sqlite and JPA repositories.
-//@EntityScan(basePackages = { "info.revenberg.domain" })
+@EntityScan(basePackages = { "info.revenberg.domain" })
 
 public class Application extends SpringBootServletInitializer {
 
