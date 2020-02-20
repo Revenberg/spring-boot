@@ -221,13 +221,13 @@
     </dependencyManagement>
 
     <build>
-        <resources>
+<!--        <resources>
             <resource>
                 <directory>/home/sander/songs/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
-         <plugins>
+    -->     <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
