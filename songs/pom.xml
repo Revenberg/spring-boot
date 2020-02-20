@@ -55,10 +55,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
         <!-- Spring security -->
         <!--
             <dependency>
@@ -225,13 +221,13 @@
     </dependencyManagement>
 
     <build>
-<!--        <resources>
+        <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>/home/sander/songs/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
-    -->     <plugins>
+         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
