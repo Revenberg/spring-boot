@@ -33,7 +33,7 @@ public class Reader implements ItemReader<DataObject> {
 		Vers vers = result.get(0);
 		System.out.println("================");
 		System.out.println(vers.getId());
-		System.out.println(vers.getLocation();
+		System.out.println(vers.getLocation());
 
 		/*
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
