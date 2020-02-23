@@ -38,13 +38,15 @@ public class Reader implements ItemReader<DataObject> {
 
 		RestResponsePage<Vers> result = restTemplate.getForObject(uri, RestResponsePage.class);
 
-		Map<String, Vers> map = new HashMap<>();
-		Map.Entry<String, Vers> entry = map.entrySet().iterator().next();
-		String key = entry.getKey();
-		Vers value = entry.getValue();
+		for (Map.Entry<String, ArrayList<Vers>> entry : result.entrySet()) {
+			String key = entry.getKey();
+			System.out.println(key);
+			ArrayList<Vers> value = entry.getValue();
+			System.out.println(value);
+			
 
-		System.out.println(key);
-		System.out.println(value);
+			// now work with key and value...
+		}
 
 		/*
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
