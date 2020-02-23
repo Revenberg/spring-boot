@@ -40,11 +40,7 @@ public class Reader implements ItemReader<DataObject> {
 
 		List<Vers> result = pages.getContent();
 
-		for (Vers vers : result) {
-            System.out.println(vers);
-		}
-		
-		System.out.println();
+		System.out.println(result);
 
 		/*
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
