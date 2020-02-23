@@ -1,13 +1,7 @@
 package info.revenberg.loader.step;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.ws.rs.HttpMethod;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import info.revenberg.domain.Vers;
 import info.revenberg.loader.objects.DataObject;
@@ -17,11 +11,7 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 public class Reader implements ItemReader<DataObject> {
 
@@ -40,7 +30,7 @@ public class Reader implements ItemReader<DataObject> {
 
 		List<Vers> result = pages.getContent();
 
-		System.out.println(result);
+		System.out.println(result.get(0));
 
 		/*
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
