@@ -12,6 +12,7 @@ cp ~/spring-boot/maintain/src/main/resources/bootstrap.properties ~/maintain/
 cp ~/spring-boot/maintain/src/main/resources/application.yml      ~/maintain/
 
 cd ~/spring-boot/maintain
-nohup mvn spring-boot:run > /var/log/sander/maintain.log & 
+
+nohup mvn spring-boot:run -rf maintain > /var/log/sander/maintain.log & 
 
 cd ~

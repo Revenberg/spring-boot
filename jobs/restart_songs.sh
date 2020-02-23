@@ -7,10 +7,10 @@ kill ${process} 2>/dev/null
 
 echo start songs
 
-cp ~/spring-boot/songs/src/main/resources/bootstrap.properties ~/songs/
-cp ~/spring-boot/songs/src/main/resources/application.yml      ~/songs/
+cp ~/spring-boot/songs/src/main/resources/bootstrap.properties ~/spring-boot/songs
+cp ~/spring-boot/songs/src/main/resources/application.yml      ~/spring-boot/songs
 
 cd ~/spring-boot
-nohup mvn spring-boot:run  -rf songs > /var/log/sander/songs.log & 
+nohup mvn spring-boot:run  -rf songs > /var/log/sander/songs.log &
 
 cd ~

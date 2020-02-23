@@ -9,4 +9,6 @@ mvn clean package
 cd ~
 ./restart_songs.sh;
 sleep 60s
+
+cd ~
 ./restart_maintain.sh;

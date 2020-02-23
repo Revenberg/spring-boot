@@ -22,7 +22,6 @@ nohup mvn spring-boot:run &
 
 cd ~
 
-
 echo build spring-boot
 rm -rf ~/spring-boot
 git clone https://github.com/Revenberg/spring-boot.git
