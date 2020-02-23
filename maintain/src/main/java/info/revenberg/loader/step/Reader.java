@@ -1,7 +1,9 @@
 package info.revenberg.loader.step;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.HttpMethod;
 
@@ -26,28 +28,29 @@ public class Reader implements ItemReader<DataObject> {
 	private static int counter = 0;
 	List<String> list = new ArrayList<>();
 
-	
 	@Override
 	public DataObject read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-        counter++;
+		counter++;
 
-        String uri = "http://localhost:8090/rest/v1/vers?page=" + Integer.toString(counter) + "&size=1";
-        
+		String uri = "http://localhost:8090/rest/v1/vers?page=" + Integer.toString(counter) + "&size=1";
+
 		RestTemplate restTemplate = new RestTemplate();
-		
-        RestResponsePage<Vers> result = restTemplate.getForObject(uri, RestResponsePage.class);
 
-        System.out.println(result);
+		RestResponsePage<Vers> result = restTemplate.getForObject(uri, RestResponsePage.class);
 
+		Map<String, Vers> map = new HashMap<>();
+		Map.Entry<String, Vers> entry = map.entrySet().iterator().next();
+		String key = entry.getKey();
+		Vers value = entry.getValue();
 
-/*	   if (!list.isEmpty()) {
-		   String element = list.get(0);
-		   list.remove(0);			
-		   return new DataObject(element);
-	   } 
-*/
-	   return null;
-   }
+		System.out.println(key);
+		System.out.println(value);
 
+		/*
+		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
+		 * new DataObject(element); }
+		 */
+		return null;
+	}
 
 }
