@@ -10,10 +10,9 @@
 
     <modules>
         <module>domain</module>
-        <module>loader</module>
+        <module>hibernate</module>
         <module>maintain</module>
         <module>songs</module>
-        <module>hibernate</module>
     </modules>
 
     <parent>
