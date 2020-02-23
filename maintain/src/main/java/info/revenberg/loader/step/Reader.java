@@ -36,9 +36,15 @@ public class Reader implements ItemReader<DataObject> {
 
 		RestTemplate restTemplate = new RestTemplate();
 
-		RestResponsePage<Vers> result = restTemplate.getForObject(uri, RestResponsePage.class);
+		RestResponsePage<Vers> pages = restTemplate.getForObject(uri, RestResponsePage.class);
 
-		System.out.println(result);
+		List<Vers> result = pages.getContent();
+
+		for (Vers vers : result) {
+            System.out.println(vers);
+		}
+		
+		System.out.println();
 
 		/*
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
