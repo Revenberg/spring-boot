@@ -38,15 +38,7 @@ public class Reader implements ItemReader<DataObject> {
 
 		RestResponsePage<Vers> result = restTemplate.getForObject(uri, RestResponsePage.class);
 
-		for (Map.Entry<String, ArrayList<Vers>> entry : result.entrySet()) {
-			String key = entry.getKey();
-			System.out.println(key);
-			ArrayList<Vers> value = entry.getValue();
-			System.out.println(value);
-			
-
-			// now work with key and value...
-		}
+		System.out.println(result);
 
 		/*
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
