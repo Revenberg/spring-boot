@@ -34,8 +34,9 @@ public class Reader implements ItemReader<Vers> {
 		
 		if (c.isPresent()) {
 			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
-			System.out.println((c.get()).getClass().getName());
 			System.out.println(c.get());
+			System.out.println(c.get().getClass());
+			System.out.println(c.get().getClass().getName());
 			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
 			return (Vers) c.get();
 		}
