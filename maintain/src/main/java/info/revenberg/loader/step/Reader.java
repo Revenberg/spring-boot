@@ -1,6 +1,7 @@
 package info.revenberg.loader.step;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -28,13 +29,14 @@ public class Reader implements ItemReader<Vers> {
 		RestTemplate restTemplate = new RestTemplate();
 
 		RestResponsePage pages = restTemplate.getForObject(uri, RestResponsePage.class);
-
+	
 		List v = pages.getContent();
-		Object c = v.get(0);
+		LinkedHashMap c = (LinkedHashMap) v.get(0);
 		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
 		System.out.println(c);
 		System.out.println(c.getClass());
 		System.out.println(c.getClass().getSimpleName());
+		System.out.println(c.get(0));
 		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
 		
 
