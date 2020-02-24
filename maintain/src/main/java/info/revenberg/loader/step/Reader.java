@@ -29,10 +29,17 @@ public class Reader implements ItemReader<Vers> {
 
 		RestResponsePage<Vers> pages = restTemplate.getForObject(uri, RestResponsePage.class);
 
-		Stream<Vers> v = pages.get();
-		Optional<Vers> c = v.findFirst();
+		List<Vers> v = pages.getContent();
+		Vers c = v.get(0);
+		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+		System.out.println(c);
+		System.out.println(c.getClass());
+		System.out.println(c.getClass().getSimpleName());
+		System.out.println(c.getId());
+		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
 		
-		if (c.isPresent()) {
+
+		/*if (c.isPresent()) {
 			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
 			System.out.println(c.get());
 			System.out.println(c.get().getClass());
@@ -40,7 +47,7 @@ public class Reader implements ItemReader<Vers> {
 			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
 			return (Vers) c.get();
 		}
-
+*/
 		
 //		Vers vers = result.get(0);
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
