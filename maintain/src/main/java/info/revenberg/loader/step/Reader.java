@@ -30,14 +30,16 @@ public class Reader implements ItemReader<DataObject> {
 
 		List<Vers> result = pages.getContent();
 
-		System.out.println("================");
-		System.out.println("================");
+		System.out.println(Integer.toString(counter) + "================");
+		System.out.println(Integer.toString(counter) + ":================");
 		System.out.println(pages);
-		System.out.println("================");
+		System.out.println(Integer.toString(counter) + ":================");
 		System.out.println(result);
+		System.out.println(Integer.toString(counter) + ":1111111111111111111111111111");
 		System.out.println(result.get(0).getClass());
+		System.out.println(Integer.toString(counter) + ":22222222222222222222");
 		System.out.println(result.get(0));
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(Integer.toString(counter) + ":!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		
 //		Vers vers = result.get(0);
 //		System.out.println("================");
