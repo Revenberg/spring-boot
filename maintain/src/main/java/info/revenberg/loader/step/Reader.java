@@ -2,6 +2,8 @@ package info.revenberg.loader.step;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import info.revenberg.domain.Vers;
 import info.revenberg.loader.objects.DataObject;
@@ -27,6 +29,15 @@ public class Reader implements ItemReader<DataObject> {
 		RestTemplate restTemplate = new RestTemplate();
 
 		RestResponsePage<Vers> pages = restTemplate.getForObject(uri, RestResponsePage.class);
+
+		Stream<Vers> v = pages.get();
+		Optional<Vers> c = v.findFirst();
+		
+		if (c.isPresent()) {
+			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+			System.out.println(c.get());
+			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+		}
 
 		List<Vers> result = pages.getContent();
 
