@@ -27,15 +27,14 @@ public class Reader implements ItemReader<Vers> {
 
 		RestTemplate restTemplate = new RestTemplate();
 
-		RestResponsePage<Vers> pages = restTemplate.getForObject(uri, RestResponsePage.class);
+		RestResponsePage pages = restTemplate.getForObject(uri, RestResponsePage.class);
 
-		List<Vers> v = pages.getContent();
-		Vers c = v.get(0);
+		List v = pages.getContent();
+		Object c = v.get(0);
 		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
 		System.out.println(c);
 		System.out.println(c.getClass());
 		System.out.println(c.getClass().getSimpleName());
-		System.out.println(c.getId());
 		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
 		
 
