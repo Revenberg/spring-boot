@@ -22,11 +22,11 @@ import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 
-import info.revenberg.loader.objects.DataObject;
-
 import org.springframework.batch.item.ItemWriter;
 
-public class Writer implements ItemWriter<DataObject> {
+import info.revenberg.domain.Vers;
+
+public class Writer implements ItemWriter<Vers> {
     private static int counter = 0;
 
     public String uploadFile(String postEndpoint, String filename) throws IOException {
@@ -87,10 +87,10 @@ public class Writer implements ItemWriter<DataObject> {
     }
 
     @Override
-    public void write(List<? extends DataObject> messages) {
+    public void write(List<? extends Vers> messages) {
         int count = 0;
         int retry = 3;
-        for (DataObject msg : messages) {
+/*        for (Vers msg : messages) {
             if (msg != null) {
                 if (msg.getFilename() != "") {
                     counter++;
@@ -113,6 +113,7 @@ public class Writer implements ItemWriter<DataObject> {
                 count++;
             }
         }
+        */
     }
 
 }

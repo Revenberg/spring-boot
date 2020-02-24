@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import info.revenberg.domain.Vers;
-import info.revenberg.loader.objects.DataObject;
 import info.revenberg.loader.objects.RestResponsePage;
 
 import org.springframework.batch.item.ItemReader;
@@ -15,13 +14,13 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 
-public class Reader implements ItemReader<DataObject> {
+public class Reader implements ItemReader<Vers> {
 
 	private static int counter = 0;
 	List<String> list = new ArrayList<>();
 
 	@Override
-	public DataObject read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 		counter++;
 
 		String uri = "http://localhost:8090/rest/v1/vers?page=" + Integer.toString(counter) + "&size=1";
@@ -34,27 +33,12 @@ public class Reader implements ItemReader<DataObject> {
 		Optional<Vers> c = v.findFirst();
 		
 		if (c.isPresent()) {
-			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
-			System.out.println(c.get());
-			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+//			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+//			System.out.println(c.get());
+//			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+			return c.get();
 		}
 
-		List<Vers> result = pages.getContent();
-
-		System.out.println(Integer.toString(counter) + "================");
-		System.out.println(Integer.toString(counter) + ":================");
-		System.out.println(pages);
-		System.out.println(Integer.toString(counter) + ":================");
-		System.out.println(result);
-		System.out.println(Integer.toString(counter) + ":1111111111111111111111111111");
-		System.out.println(result.getClass());
-		System.out.println(Integer.toString(counter) + ":aaaaaaaaa");
-		System.out.println(pages.getContent().get(0).getClass());
-			System.out.println(Integer.toString(counter) + ":bbbbb");
-		System.out.println(result.get(0).getClass());
-		System.out.println(Integer.toString(counter) + ":22222222222222222222");
-		System.out.println(result.get(0));
-		System.out.println(Integer.toString(counter) + ":!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		
 //		Vers vers = result.get(0);
 //		System.out.println("================");
@@ -63,7 +47,7 @@ public class Reader implements ItemReader<DataObject> {
 
 		/*
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
-		 * new DataObject(element); }
+		 * new Vers(element); }
 		 */
 		return null;
 	}

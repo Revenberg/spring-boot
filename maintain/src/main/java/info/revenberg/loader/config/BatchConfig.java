@@ -13,8 +13,9 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import info.revenberg.domain.Vers;
 import info.revenberg.loader.listener.JobCompletionListener;
-import info.revenberg.loader.objects.DataObject;
+//import info.revenberg.loader.objects.DataObject;
 import info.revenberg.loader.step.Processor;
 import info.revenberg.loader.step.Reader;
 import info.revenberg.loader.step.Writer;
@@ -44,10 +45,11 @@ public class BatchConfig {
 		return new SimpleAsyncTaskExecutor("spring_batch");
 	}
 
-	@Bean
+//		        .<DataObject, DataObject> chunk(1)
+@Bean
 	public Step step1() {
 		return stepBuilderFactory.get("step1")
-		        .<DataObject, DataObject> chunk(1)
+				.<Vers, Vers> chunk(1)
 				.reader(new Reader())
 				.processor(new Processor())
 				.writer(new Writer())

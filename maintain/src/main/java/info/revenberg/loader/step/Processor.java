@@ -1,15 +1,16 @@
 package info.revenberg.loader.step;
 
-import info.revenberg.loader.objects.DataObject;
-
 import org.springframework.batch.item.ItemProcessor;
 
-public class Processor implements ItemProcessor<DataObject , DataObject > {
+import info.revenberg.domain.Vers;
+
+public class Processor implements ItemProcessor<Vers , Vers > {
 
 	@Override
-	public DataObject process(final DataObject data) throws Exception {
+	public Vers process(final Vers data) throws Exception {
 		if (data == null) {
-			return data;
+			System.out.println(data);
+			//return data;
 		}		
 	return null;
 }
