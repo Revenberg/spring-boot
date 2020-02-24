@@ -36,6 +36,10 @@ public class Reader implements ItemReader<DataObject> {
 		System.out.println(Integer.toString(counter) + ":================");
 		System.out.println(result);
 		System.out.println(Integer.toString(counter) + ":1111111111111111111111111111");
+		System.out.println(result.getClass());
+		System.out.println(Integer.toString(counter) + ":aaaaaaaaa");
+		System.out.println(pages.getContent().get(0).getClass());
+			System.out.println(Integer.toString(counter) + ":bbbbb");
 		System.out.println(result.get(0).getClass());
 		System.out.println(Integer.toString(counter) + ":22222222222222222222");
 		System.out.println(result.get(0));
