@@ -33,15 +33,15 @@ public class Reader implements ItemReader<Vers> {
 		Optional<Vers> c = v.findFirst();
 		
 		if (c.isPresent()) {
-//			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
-//			System.out.println(c.get());
-//			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
-			return c.get();
+			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+			System.out.println(c.get());
+			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+			return (Vers) c.get();
 		}
 
 		
 //		Vers vers = result.get(0);
-//		System.out.println("================");
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //		System.out.println(vers.getId());
 //		System.out.println(vers.getLocation());
 
