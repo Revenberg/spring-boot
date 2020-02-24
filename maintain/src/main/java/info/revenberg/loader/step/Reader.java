@@ -31,8 +31,13 @@ public class Reader implements ItemReader<DataObject> {
 		List<Vers> result = pages.getContent();
 
 		System.out.println("================");
+		System.out.println("================");
+		System.out.println(pages);
+		System.out.println("================");
+		System.out.println(result);
 		System.out.println(result.get(0).getClass());
 		System.out.println(result.get(0));
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		
 //		Vers vers = result.get(0);
 //		System.out.println("================");
