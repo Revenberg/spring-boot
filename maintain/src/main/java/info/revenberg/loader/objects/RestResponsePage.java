@@ -9,10 +9,12 @@ import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestResponsePage<T> extends PageImpl<T> {
-   
+public class RestResponsePage<Vers> extends PageImpl<Vers> {
+
+    private static final long serialVersionUID = -6180136916928890162L;
+
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-    public RestResponsePage(@JsonProperty("content") List<T> content,
+    public RestResponsePage(@JsonProperty("content") List<Vers> content,
                         @JsonProperty("number") int number,
                         @JsonProperty("size") int size,
                         @JsonProperty("totalElements") Long totalElements,
@@ -26,11 +28,11 @@ public class RestResponsePage<T> extends PageImpl<T> {
         super(content, PageRequest.of(number, size), totalElements);
     }
 
-    public RestResponsePage(List<T> content, Pageable pageable, long total) {
+    public RestResponsePage(List<Vers> content, Pageable pageable, long total) {
         super(content, pageable, total);
     }
 
-    public RestResponsePage(List<T> content) {
+    public RestResponsePage(List<Vers> content) {
         super(content);
     }
 
