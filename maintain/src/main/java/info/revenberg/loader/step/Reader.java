@@ -17,20 +17,26 @@ import org.springframework.web.client.RestTemplate;
 
 public class Reader implements ItemReader<Vers> {
 
-	private static int counter = 0;
+	private static Long lastID = 0;
 	List<String> list = new ArrayList<>();
 
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 		
-		String uri = "http://localhost:8090/rest/v1/vers/" + Integer.toString(counter) + "/next";
+		String uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
 		RestTemplate restTemplate = new RestTemplate();
 
 		Long id = restTemplate.getForObject(uri, Long.class);
-		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+		System.out.println(Integer.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
 		System.out.println(id);
-		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+		lastID = id;
+
+		uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(lastID);
+		Vers vers = restTemplate.getForObject(uri, Vers.class);
+		System.out.println(vers);
+
+		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
 
 		/*
 		RestResponsePage pages = restTemplate.getForObject(uri, RestResponsePage.class);
