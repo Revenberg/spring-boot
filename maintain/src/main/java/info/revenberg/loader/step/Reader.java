@@ -23,7 +23,7 @@ public class Reader implements ItemReader<Vers> {
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 		
-		String uri = "http://localhost:8090/rest/v1/getNextVersId/" + Integer.toString(counter) ;
+		String uri = "http://localhost:8090/rest/v1/vers/" + Integer.toString(counter) + "/next";
 
 		RestTemplate restTemplate = new RestTemplate();
 

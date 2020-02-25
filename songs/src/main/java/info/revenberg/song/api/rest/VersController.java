@@ -78,7 +78,7 @@ public class VersController extends AbstractRestHandler {
                 return vers.get();
         }
         
-        @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+        @RequestMapping(value = "/{id}/next", method = RequestMethod.GET, produces = { "application/json" })
         @ResponseStatus(HttpStatus.OK)
         @ApiOperation(value = "Get a next versid", notes = "You have to provide a valid vers ID.")
         public @ResponseBody Long getNextVersId(
