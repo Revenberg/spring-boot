@@ -34,7 +34,9 @@ public class Reader implements ItemReader<Vers> {
 
 		uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(lastID);
 		Vers vers = restTemplate.getForObject(uri, Vers.class);
-		System.out.println(vers);
+		System.out.println(vers.getId());
+		System.out.println(vers.getLocation());
+		System.out.println(vers.getRank());
 
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
 
