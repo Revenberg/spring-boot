@@ -22,12 +22,17 @@ public class Reader implements ItemReader<Vers> {
 
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-		counter++;
-
-		String uri = "http://localhost:8090/rest/v1/vers?page=" + Integer.toString(counter) + "&size=1";
+		
+		String uri = "http://localhost:8090/rest/v1/getNextVersId/" + Integer.toString(counter) ;
 
 		RestTemplate restTemplate = new RestTemplate();
 
+		Long id = restTemplate.getForObject(uri, Long.class);
+		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+		System.out.println(id);
+		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+
+		/*
 		RestResponsePage pages = restTemplate.getForObject(uri, RestResponsePage.class);
 	
 		List v = pages.getContent();
@@ -36,9 +41,9 @@ public class Reader implements ItemReader<Vers> {
 		System.out.println(c);
 		System.out.println(c.getClass());
 		System.out.println(c.getClass().getSimpleName());
-		System.out.println(c.get(0));
+		System.out.println(c.size());
 		System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
-		
+		*/
 
 		/*if (c.isPresent()) {
 			System.out.println(Integer.toString(counter) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");

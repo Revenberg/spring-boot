@@ -28,6 +28,10 @@ public class VersService {
         return versRepository.findById(id);
     }
 
+    public Long getNextVersId(long id) {
+        return versRepository.findNextId(id);
+    }    
+
     public void updateVers(Vers vers) {
         versRepository.save(vers);
     }
