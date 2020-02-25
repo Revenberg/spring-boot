@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class Reader implements ItemReader<Vers> {
 
-	private static Long lastID = 0;
+	private static Long lastID = 0L;
 	List<String> list = new ArrayList<>();
 
 	@Override
@@ -28,7 +28,7 @@ public class Reader implements ItemReader<Vers> {
 		RestTemplate restTemplate = new RestTemplate();
 
 		Long id = restTemplate.getForObject(uri, Long.class);
-		System.out.println(Integer.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
 		System.out.println(id);
 		lastID = id;
 
