@@ -1,13 +1,7 @@
 package info.revenberg.loader.step;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
-
-import info.revenberg.domain.Vers;
-import info.revenberg.loader.objects.RestResponsePage;
 
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
@@ -15,10 +9,11 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 
+import info.revenberg.domain.Vers;
+
 public class Reader implements ItemReader<Vers> {
 
-	private static Long lastID = 0L;
-	List<String> list = new ArrayList<>();
+	private static Long lastID = 0L;	
 
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
@@ -29,16 +24,17 @@ public class Reader implements ItemReader<Vers> {
 
 		Long id = restTemplate.getForObject(uri, Long.class);
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
-		System.out.println(id);
+		System.out.println(id);		
+		if (lastID == id) {
+			return read();
+		}
 		lastID = id;
-
-		uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(lastID);
+		
+		uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(id);
 		Vers vers = restTemplate.getForObject(uri, Vers.class);
-		System.out.println(vers.getId());
-		System.out.println(vers.getLocation());
-		System.out.println(vers.getRank());
-
+		System.out.println(vers);
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+		return vers;
 
 		/*
 		RestResponsePage pages = restTemplate.getForObject(uri, RestResponsePage.class);
@@ -64,7 +60,7 @@ public class Reader implements ItemReader<Vers> {
 */
 		
 //		Vers vers = result.get(0);
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //		System.out.println(vers.getId());
 //		System.out.println(vers.getLocation());
 
@@ -72,7 +68,7 @@ public class Reader implements ItemReader<Vers> {
 		 * if (!list.isEmpty()) { String element = list.get(0); list.remove(0); return
 		 * new Vers(element); }
 		 */
-		return null;
+		
 	}
 
 }
