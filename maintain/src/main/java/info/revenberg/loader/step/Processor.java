@@ -19,6 +19,7 @@ public class Processor implements ItemProcessor<Vers, Vers> {
 		System.out.println("process A");
 		System.out.println(vers);
 		String uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
+		System.out.println(uri);
 
 		FindLinesInImage result = new FindLinesInImage(uri, mediaLocation, vers.getSong().getBundle().getName(),
 				vers.getSong().getName());

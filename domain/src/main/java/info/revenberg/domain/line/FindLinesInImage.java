@@ -8,6 +8,7 @@ import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -38,7 +39,9 @@ public class FindLinesInImage {
         this.scaling = 1.0;
         File f = new File(filename);
         String title = f.getName().replace("." + FilenameUtils.getExtension(filename), "");
-        image = ImageIO.read(f);
+      
+        URL url = new URL(filename);
+        image = ImageIO.read(url);
 
         int lineRgb = Color.BLACK.getRGB();
         Map<Double, Line2D> lines2a = new TreeMap<Double, Line2D>();

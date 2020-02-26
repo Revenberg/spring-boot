@@ -172,9 +172,8 @@ public class PPTController {
 
 					System.out.println("!!!!!!!!!!!!!!!!!!! vers !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 					System.out.println(vers);
-					System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					
-					
+					System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");               		
+
 					FindLinesInImage result = new FindLinesInImage(temp, mediaLocation, bundleName, songName);
 					// result1.createIMG(1, 3, "41_gezangen.Gz_001");
 
