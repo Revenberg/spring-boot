@@ -206,6 +206,12 @@ public class FindLinesInImage {
             }
         }
 
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println((int) (showBlock.getX1() * scaling));
+        System.out.println((int) ((showBlock.getY1() - 25) * scaling));
+        System.out.println((int) ((showBlock.getX2() - showBlock.getX1()) * scaling));
+        System.out.println((int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling));
+
         return myImage.getSubimage((int) (showBlock.getX1() * scaling), (int) ((showBlock.getY1() - 25) * scaling),
                 (int) ((showBlock.getX2() - showBlock.getX1()) * scaling),
                 (int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling));
