@@ -213,6 +213,7 @@ public class FindLinesInImage {
         System.out.println("4: " + Integer.toString((int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling)));
 
         System.out.println("W: " + Integer.toString((int) ((showBlock.getX1() * scaling) + (int) ((showBlock.getX2() - showBlock.getX1()) * scaling))));
+        System.out.println("H: " + Integer.toString((int) ((showBlock.getY1() * scaling) + (int) ((showBlock.getY2() - showBlock.getX1()) * scaling))));
 
         System.out.println("5: " + Integer.toString(myImage.getWidth()));
         System.out.println("6: " + Integer.toString(myImage.getHeight()));
