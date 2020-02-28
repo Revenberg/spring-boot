@@ -45,7 +45,6 @@ public class BatchConfig {
 		return new SimpleAsyncTaskExecutor("spring_batch");
 	}
 
-//		        .<DataObject, DataObject> chunk(1)
 @Bean
 	public Step step1() {
 		return stepBuilderFactory.get("step1")
@@ -54,6 +53,7 @@ public class BatchConfig {
 				.processor(new Processor())
 				.writer(new Writer())
 				.taskExecutor(taskExecutor())
+				.allowStartIfComplete(true)
 				.build();
 	}
 

@@ -218,17 +218,17 @@ public class FindLinesInImage {
         System.out.println("5: " + Integer.toString(myImage.getWidth()));
         System.out.println("6: " + Integer.toString(myImage.getHeight()));
 
-        return myImage.getSubimage((int) (showBlock.getX1() * scaling), (int) ((showBlock.getY1() - 25) * scaling),
+        BufferedImage temp = myImage.getSubimage((int) (showBlock.getX1() * scaling), (int) ((showBlock.getY1() - 25) * scaling),
                 (int) ((showBlock.getX2() - showBlock.getX1()) * scaling),
                 (int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling));
+            System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            return temp;
     }
 
     public void saveImages(String path, String filename) throws IOException {
         BufferedImage img;
         for (int i = 0; i < this.getversLines(); i++) {
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
             img = this.line(i + 1);
-            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBB");
             String filepath = path + "/" + filename + "_" + Integer.toString(i + 1) + ".jpeg";
             ImageDefinition imageDefinition = new ImageDefinition((Integer) i);
 
