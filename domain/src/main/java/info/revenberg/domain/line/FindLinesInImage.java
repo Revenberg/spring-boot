@@ -226,7 +226,9 @@ public class FindLinesInImage {
     public void saveImages(String path, String filename) throws IOException {
         BufferedImage img;
         for (int i = 0; i < this.getversLines(); i++) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
             img = this.line(i + 1);
+            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBB");
             String filepath = path + "/" + filename + "_" + Integer.toString(i + 1) + ".jpeg";
             ImageDefinition imageDefinition = new ImageDefinition((Integer) i);
 
