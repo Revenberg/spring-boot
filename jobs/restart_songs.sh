@@ -11,6 +11,9 @@ cp ~/spring-boot/songs/src/main/resources/bootstrap.properties ~/spring-boot/son
 cp ~/spring-boot/songs/src/main/resources/application.yml      ~/spring-boot/songs
 
 cd ~/spring-boot
+git pull
+mvn clean install package
+
 nohup mvn spring-boot:run  -rf songs > /var/log/sander/songs.log &
 
 cd ~

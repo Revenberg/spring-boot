@@ -4,7 +4,7 @@ mkdir ~/songs/db 2>/dev/null
 
 cd ~/spring-boot
 git pull
-mvn clean package
+mvn clean install package
 
 cd ~
 ./restart_songs.sh;

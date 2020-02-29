@@ -27,7 +27,7 @@ rm -rf ~/spring-boot
 git clone https://github.com/Revenberg/spring-boot.git
 
 cd ~/spring-boot
-mvn clean install
+mvn clean install package
 
 cp ~/spring-boot/songs/src/main/resources/bootstrap.properties ~/spring-boot/songs/
 cp ~/spring-boot/songs/src/main/resources/application.yml      ~/spring-boot/songs/
