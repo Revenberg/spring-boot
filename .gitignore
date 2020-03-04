@@ -1,9 +1,9 @@
+target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
-!**/src/test/**
-*/target
-/**/target
-target/*
+**/src/test/**
+!**/configserver/**
+!**/resources/**
 
 ### STS ###
 .apt_generated
@@ -14,5 +14,22 @@ target/*
 .springBeans
 .sts4-cache
 
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
 ### VS Code ###
 .vscode/
+
+### Database ###
+*.db
