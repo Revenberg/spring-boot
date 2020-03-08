@@ -49,7 +49,7 @@ public class BatchConfig {
 @Bean
 	public Step step1() {
 		return stepBuilderFactory.get("step1")
-				.<Vers, FindLinesInImage> chunk(1)
+				.<Vers, BufferedImage> chunk(1)
 				.reader(new Reader())							
 				.processor(new Processor())
 				.writer(new Writer())

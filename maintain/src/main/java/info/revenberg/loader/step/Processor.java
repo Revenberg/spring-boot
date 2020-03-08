@@ -3,34 +3,49 @@ package info.revenberg.loader.step;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.factory.annotation.Value;
 
+import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;
 import info.revenberg.domain.line.FindLinesInImage;
+import info.revenberg.domain.line.ImageDefinition;
 
-public class Processor implements ItemProcessor<Vers, FindLinesInImage> {
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.Map;
 
-	@Value("${media.location}")
-	private String mediaLocation;
+public class Processor implements ItemProcessor<Vers, BufferedImage> {
 
-	@Override
-	public FindLinesInImage  process(final Vers vers) throws Exception {
-		if (vers == null) {
-			return null;
-		}
-		FindLinesInImage result = null;
-		try {
-			System.out.println("process A");
-			System.out.println(vers);
-			String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
-			System.out.println(uri);
+    @Value("${media.location}")
+    private String mediaLocation;
 
-			result = new FindLinesInImage(uri, mediaLocation, vers.getSong().getBundle().getName(),
-					vers.getSong().getName());
+    @Override
+    public BufferedImage process(final Vers vers) throws Exception {
+        if (vers == null) {
+            return null;
+        }
+        FindLinesInImage result = null;
 
-			System.out.println(result);
-			System.out.println("process B");
+        try {
+            System.out.println("process A");
+            System.out.println(vers);
+            String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
+            System.out.println(uri);
 
-		} catch (Exception e) {
-		}
-		return result;
-	}
+            FindLinesInImage images = new FindLinesInImage(uri, mediaLocation, vers.getSong().getBundle().getName(),
+                    vers.getSong().getName());
+
+            System.out.println(result);
+            System.out.println("process B");
+
+            for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions().entrySet()) {
+                ImageDefinition imageDefinition = entry.getValue();
+
+                Line line = new Line();
+                line.setRank(entry.getKey());
+                line.setLocation(imageDefinition.getFilename());
+                line.setVers(vers);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 }

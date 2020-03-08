@@ -88,14 +88,14 @@ public class Writer implements ItemWriter<FindLinesInImage> {
     }
 
     @Override
-    public void write(List<? extends FindLinesInImage> images) {       
-        for (FindLinesInImage linesInImage : images) {
-            for (int i = 0;i < linesInImage.getversLines();i++) {
-                    BufferedImage bi = linesInImage.line(i);
-                    System.out.println(bi.getWidth());
-            }
+    public void write(List<? extends BufferedImage> images) {
+
+        for (BufferedImage image : images) {
+            System.out.println(image.getWidth());
+
         }
     }
+
 public test () {
     List<? extends vers>  messages = null;
         int count = 0;

@@ -104,7 +104,7 @@ public class FindLinesInImage {
         block = new Line2D.Double(line1.getP1().getX(), line1.getP1().getY() - 12, line2.getP2().getX() + 5,
                 line2.getP2().getY());
         blocks.put(Double.valueOf(block.getY1()), block);
-        saveImages(path, bundle + "." + song + "." + title);
+        return saveImages(path, bundle + "." + song + "." + title);
     }
 
     public int getversLines() {
@@ -227,7 +227,7 @@ public class FindLinesInImage {
 
     public void saveImages(String path, String filename) throws IOException {
         BufferedImage img;
-        for (int i = 0; i < this.getversLines(); i++) {
+        for (int i=0;i < this.getversLines();i++) {
             img = this.line(i + 1);
             String filepath = path + "/" + filename + "_" + Integer.toString(i + 1) + ".jpeg";
             ImageDefinition imageDefinition = new ImageDefinition((Integer) i);
@@ -238,10 +238,6 @@ public class FindLinesInImage {
             imageDefinition.setTitle(filename);
             imageDefinition.setImage(img);
             imageDefinitions.put((Integer) i, imageDefinition);
-
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println(imageDefinition);
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
             save(img, filepath);
         }
@@ -261,6 +257,7 @@ public class FindLinesInImage {
         IIOImage image = new IIOImage(img, null, null);
         writer.write(null, image, iwp);
         writer.dispose();
+        filepath;
     }
 
     public void createIMG(int from, int to, String path, String filename) throws IOException {
