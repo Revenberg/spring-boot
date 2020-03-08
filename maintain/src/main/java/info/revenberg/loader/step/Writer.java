@@ -1,5 +1,6 @@
 package info.revenberg.loader.step;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -87,12 +88,16 @@ public class Writer implements ItemWriter<FindLinesInImage> {
     }
 
     @Override
-    public void write(List<? extends FindLinesInImage> vers) {       
-
-
-
-        hier weg schrijven
-
+    public void write(List<? extends FindLinesInImage> images) {       
+        for (FindLinesInImage linesInImage : images) {
+            for (int i = 0;i < linesInImage.getversLines();i++) {
+                    BufferedImage bi = linesInImage.line(i);
+                    System.out.println(bi.getWidth());
+            }
+        }
+    }
+public test () {
+    List<? extends vers>  messages = null;
         int count = 0;
         int retry = 3;
         for (Vers msg : messages) {

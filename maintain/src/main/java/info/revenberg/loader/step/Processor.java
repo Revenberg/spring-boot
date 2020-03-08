@@ -12,7 +12,7 @@ public class Processor implements ItemProcessor<Vers, FindLinesInImage> {
 	private String mediaLocation;
 
 	@Override
-	public FindLinesInImage process(final Vers vers) throws Exception {
+	public FindLinesInImage  process(final Vers vers) throws Exception {
 		if (vers == null) {
 			return null;
 		}
@@ -31,6 +31,6 @@ public class Processor implements ItemProcessor<Vers, FindLinesInImage> {
 
 		} catch (Exception e) {
 		}
-return result;
+		return result;
 	}
 }
