@@ -7,18 +7,15 @@ import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;
 import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.domain.line.ImageDefinition;
-
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.Map;
 
-public class Processor implements ItemProcessor<Vers, BufferedImage> {
+public class Processor implements ItemProcessor<Vers, String> {
 
     @Value("${media.location}")
     private String mediaLocation;
 
     @Override
-    public BufferedImage process(final Vers vers) throws Exception {
+    public String process(final Vers vers) throws Exception {
         if (vers == null) {
             return null;
         }
@@ -43,6 +40,7 @@ public class Processor implements ItemProcessor<Vers, BufferedImage> {
                 line.setRank(entry.getKey());
                 line.setLocation(imageDefinition.getFilename());
                 line.setVers(vers);
+                return imageDefinition.getTitle();
             }
         } catch (Exception e) {
         }

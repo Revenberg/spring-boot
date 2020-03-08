@@ -25,10 +25,7 @@ import org.apache.http.protocol.HttpContext;
 
 import org.springframework.batch.item.ItemWriter;
 
-import info.revenberg.domain.Vers;
-import info.revenberg.domain.line.FindLinesInImage;
-
-public class Writer implements ItemWriter<FindLinesInImage> {
+public class Writer implements ItemWriter<String> {
 
     public String uploadFile(String postEndpoint, String filename) throws IOException {
 
@@ -88,14 +85,13 @@ public class Writer implements ItemWriter<FindLinesInImage> {
     }
 
     @Override
-    public void write(List<? extends BufferedImage> images) {
+    public void write(List<? extends String> images) {
 
-        for (BufferedImage image : images) {
-            System.out.println(image.getWidth());
-
+        for (String image : images) {
+            System.out.println(image);
         }
     }
-
+/*
 public test () {
     List<? extends vers>  messages = null;
         int count = 0;
@@ -124,5 +120,5 @@ public test () {
             }
         }
     }
-
+*/
 }
