@@ -40,6 +40,7 @@ public class Processor implements ItemProcessor<Vers, String> {
                 line.setRank(entry.getKey());
                 line.setLocation(imageDefinition.getFilename());
                 line.setVers(vers);
+                System.out.println(imageDefinition.getFilename());
                 return imageDefinition.getTitle();
             }
         } catch (Exception e) {
