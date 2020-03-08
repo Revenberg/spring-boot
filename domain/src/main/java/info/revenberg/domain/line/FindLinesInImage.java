@@ -206,7 +206,7 @@ public class FindLinesInImage {
             }
         }
 
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+/*        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println("1: " + Integer.toString((int) (showBlock.getX1() * scaling)));
         System.out.println("2: " + Integer.toString((int) ((showBlock.getY1() - 25) * scaling)));
         System.out.println("3: " + Integer.toString((int) ((showBlock.getX2() - showBlock.getX1()) * scaling)));
@@ -217,11 +217,11 @@ public class FindLinesInImage {
 
         System.out.println("5: " + Integer.toString(myImage.getWidth()));
         System.out.println("6: " + Integer.toString(myImage.getHeight()));
-
+*/
         BufferedImage temp = myImage.getSubimage((int) (showBlock.getX1() * scaling), (int) ((showBlock.getY1() - 25) * scaling),
                 (int) ((showBlock.getX2() - showBlock.getX1()) * scaling),
                 (int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling));
-            System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+  //          System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
             return temp;
     }
 
@@ -258,7 +258,7 @@ public class FindLinesInImage {
         writer.write(null, image, iwp);
         writer.dispose();        
     }
-    
+
     public void createIMG(int from, int to, String path, String filename) throws IOException {
         from = from - 1;
         to = to - 1;

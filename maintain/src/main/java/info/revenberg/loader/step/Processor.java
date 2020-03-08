@@ -30,7 +30,6 @@ public class Processor implements ItemProcessor<Vers, String> {
             FindLinesInImage images = new FindLinesInImage(uri, mediaLocation + "/vers", vers.getSong().getBundle().getName(),
                     vers.getSong().getName());
 
-            System.out.println(result);
             System.out.println("process B");
 
             for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions().entrySet()) {
