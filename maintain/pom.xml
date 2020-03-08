@@ -14,8 +14,8 @@
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>SpringBatch</name>
-	<description>Spring Batch-Spring Boot</description>
+	<name>maintain</name>
+	<description>Spring Batch-Spring Boot maintain</description>
 
 	<properties>
 		<start-class>info.revenberg.loader.SpringBatchApplication</start-class>					
