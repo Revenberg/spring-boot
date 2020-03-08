@@ -18,7 +18,7 @@ public class Reader implements ItemReader<Vers> {
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 		
-		String uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
+		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -33,7 +33,7 @@ public class Reader implements ItemReader<Vers> {
 		}
 		lastID = id;
 		
-		uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(id);
+		uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(id);
 		Vers vers = restTemplate.getForObject(uri, Vers.class);
 		System.out.println(vers);
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");

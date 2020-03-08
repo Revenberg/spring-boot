@@ -6,26 +6,31 @@ import org.springframework.beans.factory.annotation.Value;
 import info.revenberg.domain.Vers;
 import info.revenberg.domain.line.FindLinesInImage;
 
-public class Processor implements ItemProcessor<Vers, Vers> {
+public class Processor implements ItemProcessor<Vers, FindLinesInImage> {
 
 	@Value("${media.location}")
 	private String mediaLocation;
 
 	@Override
-	public Vers process(final Vers vers) throws Exception {
+	public FindLinesInImage process(final Vers vers) throws Exception {
 		if (vers == null) {
 			return null;
 		}
-		System.out.println("process A");
-		System.out.println(vers);
-		String uri = "http://localhost:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
-		System.out.println(uri);
+		FindLinesInImage result = null;
+		try {
+			System.out.println("process A");
+			System.out.println(vers);
+			String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
+			System.out.println(uri);
 
-		FindLinesInImage result = new FindLinesInImage(uri, mediaLocation, vers.getSong().getBundle().getName(),
-				vers.getSong().getName());
+			result = new FindLinesInImage(uri, mediaLocation, vers.getSong().getBundle().getName(),
+					vers.getSong().getName());
 
-		System.out.println(result);
-		System.out.println("process B");
-		return vers;
+			System.out.println(result);
+			System.out.println("process B");
+
+		} catch (Exception e) {
+		}
+return result;
 	}
 }
