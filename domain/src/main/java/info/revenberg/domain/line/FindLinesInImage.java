@@ -258,7 +258,7 @@ public class FindLinesInImage {
         writer.write(null, image, iwp);
         writer.dispose();        
     }
-
+    
     public void createIMG(int from, int to, String path, String filename) throws IOException {
         from = from - 1;
         to = to - 1;
