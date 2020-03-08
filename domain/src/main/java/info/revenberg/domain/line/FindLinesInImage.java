@@ -104,7 +104,7 @@ public class FindLinesInImage {
         block = new Line2D.Double(line1.getP1().getX(), line1.getP1().getY() - 12, line2.getP2().getX() + 5,
                 line2.getP2().getY());
         blocks.put(Double.valueOf(block.getY1()), block);
-        return saveImages(path, bundle + "." + song + "." + title);
+        saveImages(path, bundle + "." + song + "." + title);
     }
 
     public int getversLines() {
@@ -256,8 +256,7 @@ public class FindLinesInImage {
 
         IIOImage image = new IIOImage(img, null, null);
         writer.write(null, image, iwp);
-        writer.dispose();
-        filepath;
+        writer.dispose();        
     }
 
     public void createIMG(int from, int to, String path, String filename) throws IOException {
