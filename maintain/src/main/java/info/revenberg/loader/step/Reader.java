@@ -13,7 +13,7 @@ import info.revenberg.domain.Vers;
 
 public class Reader implements ItemReader<Vers> {
 
-	private static Long lastID = 0L;	
+	private static Long lastID = 1240L;	
 
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
@@ -24,7 +24,7 @@ public class Reader implements ItemReader<Vers> {
 
 		Long id = restTemplate.getForObject(uri, Long.class);
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
-		if (id == null) {
+		./if (id == null) {
 			return null;
 		}	
 		if (lastID == id) {
