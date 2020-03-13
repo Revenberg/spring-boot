@@ -35,7 +35,7 @@ public class FindLinesInImage {
     public static int minimumLineLength = 100;
     private double scaling;
 
-    public FindLinesInImage(String filename, String path, String bundle, String song) throws IOException {
+    public FindLinesInImage(String filename, String path, String bundle, String song, long id) throws IOException {
         this.scaling = 1.0;
         File f = new File(filename);
         String title = f.getName().replace("." + FilenameUtils.getExtension(filename), "");
@@ -104,7 +104,7 @@ public class FindLinesInImage {
         block = new Line2D.Double(line1.getP1().getX(), line1.getP1().getY() - 12, line2.getP2().getX() + 5,
                 line2.getP2().getY());
         blocks.put(Double.valueOf(block.getY1()), block);
-        saveImages(path, bundle + "." + song + "." + title);
+        saveImages(path, bundle + "." + song + "." + title + "." + Long.toString(id));
     }
 
     public int getversLines() {

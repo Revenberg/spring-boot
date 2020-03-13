@@ -27,8 +27,9 @@ public class Processor implements ItemProcessor<Vers, String> {
             String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
             System.out.println(uri);
 
-            FindLinesInImage images = new FindLinesInImage(uri, mediaLocation + "/vers", vers.getSong().getBundle().getName(),
-                    vers.getSong().getName());
+            mediaLocation = "D:/Songs/temp";
+            FindLinesInImage images = new FindLinesInImage(uri, mediaLocation + "/vers",
+                    vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
 
             System.out.println("process B");
 
@@ -43,6 +44,8 @@ public class Processor implements ItemProcessor<Vers, String> {
                 return imageDefinition.getTitle();
             }
         } catch (Exception e) {
+            System.out.println(mediaLocation);
+            System.out.println(e.getMessage());
         }
         return null;
     }

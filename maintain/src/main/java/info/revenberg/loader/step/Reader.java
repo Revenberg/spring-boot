@@ -10,7 +10,7 @@ import info.revenberg.domain.Vers;
 
 public class Reader implements ItemReader<Vers> {
 
-	private static Long lastID = 1240L;	
+	private static Long lastID = 0L;	
 
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
