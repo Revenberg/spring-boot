@@ -22,16 +22,16 @@ public class Processor implements ItemProcessor<Vers, String> {
         FindLinesInImage result = null;
 
         try {
-            System.out.println("process A");
-            System.out.println(vers);
+            //System.out.println("process A");
+            //System.out.println(vers);
             String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
-            System.out.println(uri);
+            //System.out.println(uri);
 
             mediaLocation = "D:/Songs/temp";
             FindLinesInImage images = new FindLinesInImage(uri, mediaLocation + "/vers",
                     vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
 
-            System.out.println("process B");
+            //System.out.println("process B");
 
             for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions().entrySet()) {
                 ImageDefinition imageDefinition = entry.getValue();
@@ -40,11 +40,13 @@ public class Processor implements ItemProcessor<Vers, String> {
                 line.setRank(entry.getKey());
                 line.setLocation(imageDefinition.getFilename());
                 line.setVers(vers);
-                System.out.println(imageDefinition.getFilename());
+              //  System.out.println(imageDefinition.getFilename());
                 return imageDefinition.getTitle();
             }
         } catch (Exception e) {
-            System.out.println(mediaLocation);
+            System.out.println("=======================");            
+            System.out.println(vers);
+            System.out.println(mediaLocation);            
             System.out.println(e.getMessage());
         }
         return null;
