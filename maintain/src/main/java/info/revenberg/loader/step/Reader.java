@@ -1,8 +1,5 @@
 package info.revenberg.loader.step;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;

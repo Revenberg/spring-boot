@@ -14,7 +14,7 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import info.revenberg.domain.Vers;
-import info.revenberg.domain.line.FindLinesInImage;
+//import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.loader.listener.JobCompletionListener;
 //import info.revenberg.loader.objects.DataObject;
 import info.revenberg.loader.step.Processor;
@@ -37,7 +37,7 @@ public class BatchConfig {
 				.incrementer(new RunIdIncrementer())
 				.listener(listener())
 				.flow(step1())
-				.end()
+				.end()				
 				.build();
 	}
 
@@ -55,6 +55,7 @@ public class BatchConfig {
 				.writer(new Writer())
 				.taskExecutor(taskExecutor())
 				.allowStartIfComplete(true)
+				.startLimit(1)
 				.build();
 	}
 
