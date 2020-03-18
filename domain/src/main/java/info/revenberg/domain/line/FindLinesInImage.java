@@ -39,7 +39,7 @@ public class FindLinesInImage {
         this.scaling = 1.0;
         File f = new File(filename);
         String title = f.getName().replace("." + FilenameUtils.getExtension(filename), "");
-      
+
         URL url = new URL(filename);
         image = ImageIO.read(url);
 
@@ -206,28 +206,27 @@ public class FindLinesInImage {
             }
         }
 
-/*        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println("1: " + Integer.toString((int) (showBlock.getX1() * scaling)));
-        System.out.println("2: " + Integer.toString((int) ((showBlock.getY1() - 25) * scaling)));
-        System.out.println("3: " + Integer.toString((int) ((showBlock.getX2() - showBlock.getX1()) * scaling)));
-        System.out.println("4: " + Integer.toString((int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling)));
+        int w1 = (int) (showBlock.getX1() * scaling);
+        int h1 = (int) ((showBlock.getY1() - 25) * scaling);
 
-        System.out.println("W: " + Integer.toString((int) ((showBlock.getX1() * scaling) + (int) ((showBlock.getX2() - showBlock.getX1()) * scaling))));
-        System.out.println("H: " + Integer.toString((int) ((showBlock.getY1() * scaling) + (int) ((showBlock.getY2() - showBlock.getX1()) * scaling))));
+        int w2 = (int) ((showBlock.getX2() - showBlock.getX1()) * scaling);
+        int h2 = (int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling);
 
-        System.out.println("5: " + Integer.toString(myImage.getWidth()));
-        System.out.println("6: " + Integer.toString(myImage.getHeight()));
-*/
-        BufferedImage temp = myImage.getSubimage((int) (showBlock.getX1() * scaling), (int) ((showBlock.getY1() - 25) * scaling),
-                (int) ((showBlock.getX2() - showBlock.getX1()) * scaling),
-                (int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling));
-  //          System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-            return temp;
+        w2 = myImage.getWidth() - (int) (w1);
+
+        return myImage.getSubimage(w1, h1, w2, h2);
+
+        /*
+         * BufferedImage temp = myImage.getSubimage((int) (showBlock.getX1() * scaling),
+         * (int) ((showBlock.getY1() - 25) * scaling), (int) ((showBlock.getX2() -
+         * showBlock.getX1()) * scaling), (int) ((showBlock.getY2() - showBlock.getY1()
+         * + 15) * scaling)); return temp;
+         */
     }
 
     public void saveImages(String path, String filename) throws IOException {
         BufferedImage img;
-        for (int i=0;i < this.getversLines();i++) {
+        for (int i = 0; i < this.getversLines(); i++) {
             img = this.line(i + 1);
             String filepath = path + "/" + filename + "_" + Integer.toString(i + 1) + ".jpeg";
             ImageDefinition imageDefinition = new ImageDefinition((Integer) i);
@@ -256,7 +255,7 @@ public class FindLinesInImage {
 
         IIOImage image = new IIOImage(img, null, null);
         writer.write(null, image, iwp);
-        writer.dispose();        
+        writer.dispose();
     }
 
     public void createIMG(int from, int to, String path, String filename) throws IOException {
