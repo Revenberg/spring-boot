@@ -27,7 +27,8 @@ public class Processor implements ItemProcessor<Vers, String> {
             String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(vers.getId()) + "/image";
             //System.out.println(uri);
 
-            mediaLocation = "D:/Songs/temp";
+            //mediaLocation = "D:/Songs/temp";
+            mediaLocation = "/var/songs/temp";
             FindLinesInImage images = new FindLinesInImage(uri, mediaLocation + "/vers",
                     vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
 
