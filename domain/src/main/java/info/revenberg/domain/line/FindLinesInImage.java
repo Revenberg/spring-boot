@@ -32,7 +32,7 @@ public class FindLinesInImage {
     private List<Line2D> lines;
     private Map<Integer, ImageDefinition> imageDefinitions = new TreeMap<Integer, ImageDefinition>();
 
-    public static int minimumLineLength = 100;
+    public static int minimumLineLength = 5;
     private double scaling;
 
     public FindLinesInImage(String filename, String path, String bundle, String song, long id) throws IOException {
@@ -50,13 +50,20 @@ public class FindLinesInImage {
         Line2D line;
         Line2D block;
 
+        int border = (int) (image.getWidth() * minimumLineLength / 100);
+        
         for (int i = 0; i < lines.size(); i++) {
             line = lines.get(i);
-            if (line.getP1().distance(line.getP2()) > minimumLineLength) {
-                lines2a.put(line.getY2(), line);
-            }
-        }
 
+            if (line.getP1().distance(line.getP2()) > (image.getWidth() - (border * 2))) {
+                if (((line.getP1().getX() < border) || (line.getP2().getX() < border))
+                        && (line.getP1().getX() > (image.getWidth() - border))
+                        || (line.getP2().getX() > (image.getWidth() - border))) {
+                    lines2a.put(line.getY2(), line);
+                }
+            }            
+        }
+        
         double prev = -1;
         List<Double> temp = new ArrayList<Double>();
         for (Entry<Double, Line2D> entry : lines2a.entrySet()) {
@@ -129,20 +136,20 @@ public class FindLinesInImage {
             Double key = blocks.keySet().toArray(new Double[blocks.size()])[i];
             Line2D block = blocks.get(key);
             g.setColor(Color.BLUE);
-            g.fillRect((int) (block.getX1() * scaling), (int) (block.getY1() * scaling),
-                    (int) ((block.getX2() - block.getX1()) * scaling),
-                    (int) ((block.getY2() - block.getY1()) * scaling));
+            g.fillRect((int) (block.getX1() * 1), (int) (block.getY1() * 1),
+                    (int) ((block.getX2() - block.getX1()) * 1),
+                    (int) ((block.getY2() - block.getY1()) * 1));
         }
         // draw notlines
-        g.setStroke(new BasicStroke((float) (2 * scaling)));
+        g.setStroke(new BasicStroke((float) (2 * 1)));
         for (int i = 0; i < noteLines.size(); i++) {
             Line2D line = noteLines.get(i);
             g.setColor(Color.ORANGE);
             g.draw(lineTransform.createTransformedShape(line));
         }
 
-        g.fillRect(0, (int) ((image.getHeight() - 40) * scaling), (int) (image.getWidth() * scaling),
-                (int) (40 * scaling));
+        g.fillRect(0, (int) ((image.getHeight() - 40) * 1), (int) (image.getWidth() * 1),
+                (int) (40 * 1));
         return myImage;
     }
 
@@ -165,9 +172,9 @@ public class FindLinesInImage {
             block = blocks.get(key);
             if (i + 1 > splitLine) {
                 g.setColor(Color.BLACK);
-                g.drawRect((int) (block.getX1() * scaling), (int) ((block.getY1()) * scaling),
-                        (int) ((block.getX2() - block.getX1()) * scaling),
-                        (int) ((block.getY2() - block.getY2()) * scaling));
+                g.drawRect((int) (block.getX1() * 1), (int) ((block.getY1()) * 1),
+                        (int) ((block.getX2() - block.getX1()) * 1),
+                        (int) ((block.getY2() - block.getY2()) * 1));
 
                 for (int j = 0; j < lines.size(); j++) {
                     Line2D line = lines.get(j);
@@ -178,8 +185,8 @@ public class FindLinesInImage {
 
                         if (line.getX1() < myImage.getWidth() / 15) {
                             g.setColor(Color.BLACK);
-                            g.clearRect((int) (line.getX1() * scaling), (int) ((line.getY1() - 20) * scaling),
-                                    (int) ((myImage.getWidth() / 15) * scaling), (int) (line.getY2() * scaling));
+                            g.clearRect((int) (line.getX1() * 1), (int) ((line.getY1() - 20) * 1),
+                                    (int) ((myImage.getWidth() / 15) * 1), (int) (line.getY2() * 1));
                         }
                         g.setColor(Color.BLACK);
                         g.draw(lineTransform.createTransformedShape(line));
@@ -206,21 +213,21 @@ public class FindLinesInImage {
             }
         }
 
-        int w1 = (int) (showBlock.getX1() * scaling);
-        int h1 = (int) ((showBlock.getY1() - 25) * scaling);
+        int w1 = (int) (showBlock.getX1() * 1);
+        int h1 = (int) ((showBlock.getY1() - 25) * 1);
 
-        int w2 = (int) ((showBlock.getX2() - showBlock.getX1()) * scaling);
-        int h2 = (int) ((showBlock.getY2() - showBlock.getY1() + 15) * scaling);
+        int w2 = (int) ((showBlock.getX2() - showBlock.getX1()) * 1);
+        int h2 = (int) ((showBlock.getY2() - showBlock.getY1() + 15) * 1);
 
         w2 = myImage.getWidth() - (int) (w1);
 
         return myImage.getSubimage(w1, h1, w2, h2);
 
         /*
-         * BufferedImage temp = myImage.getSubimage((int) (showBlock.getX1() * scaling),
-         * (int) ((showBlock.getY1() - 25) * scaling), (int) ((showBlock.getX2() -
-         * showBlock.getX1()) * scaling), (int) ((showBlock.getY2() - showBlock.getY1()
-         * + 15) * scaling)); return temp;
+         * BufferedImage temp = myImage.getSubimage((int) (showBlock.getX1() * 1),
+         * (int) ((showBlock.getY1() - 25) * 1), (int) ((showBlock.getX2() -
+         * showBlock.getX1()) * 1), (int) ((showBlock.getY2() - showBlock.getY1()
+         * + 15) * 1)); return temp;
          */
     }
 
