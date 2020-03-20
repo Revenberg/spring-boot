@@ -9,7 +9,6 @@ import info.revenberg.domain.Vers;
 import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.domain.line.ImageDefinition;
 import info.revenberg.service.LineService;
-import info.revenberg.service.VersService;
 
 import java.util.Map;
 
