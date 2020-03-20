@@ -1,4 +1,4 @@
-package info.revenberg.song.exception;
+package info.revenberg.exception;
 
 /**
  * For HTTP 404 errros

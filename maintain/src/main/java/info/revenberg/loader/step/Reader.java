@@ -1,5 +1,7 @@
 package info.revenberg.loader.step;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
@@ -14,7 +16,8 @@ public class Reader implements ItemReader<Vers> {
 
 	@Override
 	public Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-		
+		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! a !!!!!!!!!!!");
+
 		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -32,7 +35,8 @@ public class Reader implements ItemReader<Vers> {
 		uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(id);
 		Vers vers = restTemplate.getForObject(uri, Vers.class);
 		//System.out.println(vers);
-		//System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
+		TimeUnit.SECONDS.sleep(1);
 		return vers;
 
 		/*

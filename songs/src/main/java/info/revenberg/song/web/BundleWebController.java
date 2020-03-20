@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import info.revenberg.song.dao.jpa.BundleRepository;
+import info.revenberg.dao.jpa.BundleRepository;
 import info.revenberg.domain.Bundle;
-import info.revenberg.song.service.BundleService;
+import info.revenberg.service.BundleService;
 import io.swagger.annotations.ApiParam;
 import java.util.Optional;
 

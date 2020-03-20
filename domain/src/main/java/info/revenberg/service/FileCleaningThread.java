@@ -1,4 +1,4 @@
-package info.revenberg.song.service;
+package info.revenberg.service;
 
 import java.io.File;
 import java.util.logging.Logger;

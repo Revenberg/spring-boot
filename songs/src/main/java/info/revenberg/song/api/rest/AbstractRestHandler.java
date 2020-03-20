@@ -1,8 +1,8 @@
 package info.revenberg.song.api.rest;
 
 import info.revenberg.domain.RestErrorInfo;
-import info.revenberg.song.exception.DataFormatException;
-import info.revenberg.song.exception.ResourceNotFoundException;
+import info.revenberg.exception.DataFormatException;
+import info.revenberg.exception.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;

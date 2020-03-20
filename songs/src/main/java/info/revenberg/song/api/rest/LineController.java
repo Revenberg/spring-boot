@@ -8,8 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 import info.revenberg.domain.Line;
-import info.revenberg.song.exception.DataFormatException;
-import info.revenberg.song.service.LineService;
+import info.revenberg.exception.DataFormatException;
+import info.revenberg.service.LineService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

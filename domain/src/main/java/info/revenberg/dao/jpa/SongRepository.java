@@ -1,4 +1,4 @@
-package info.revenberg.song.dao.jpa;
+package info.revenberg.dao.jpa;
 
 import info.revenberg.domain.Bundle;
 import info.revenberg.domain.Song;

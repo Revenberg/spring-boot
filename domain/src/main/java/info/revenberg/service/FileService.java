@@ -1,4 +1,4 @@
-package info.revenberg.song.service;
+package info.revenberg.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,8 +26,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import info.revenberg.song.exception.ResourceNotFoundException;
-import info.revenberg.song.exception.StorageException;
+import info.revenberg.exception.ResourceNotFoundException;
+import info.revenberg.exception.StorageException;
 
 @Service
 public class FileService {

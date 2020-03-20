@@ -1,4 +1,4 @@
-package info.revenberg.song.dao.jpa;
+package info.revenberg.dao.jpa;
 
 import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;

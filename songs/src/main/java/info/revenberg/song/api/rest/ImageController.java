@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import info.revenberg.domain.TempFile;
-import info.revenberg.song.exception.DataContentTypeException;
-import info.revenberg.song.service.FileService;
+import info.revenberg.exception.DataContentTypeException;
+import info.revenberg.service.FileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.util.StringUtils;

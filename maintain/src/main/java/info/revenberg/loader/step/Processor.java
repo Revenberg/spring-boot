@@ -1,12 +1,16 @@
 package info.revenberg.loader.step;
 
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;
 import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.domain.line.ImageDefinition;
+import info.revenberg.service.LineService;
+import info.revenberg.service.VersService;
+
 import java.util.Map;
 
 public class Processor implements ItemProcessor<Vers, String> {
@@ -14,6 +18,9 @@ public class Processor implements ItemProcessor<Vers, String> {
     @Value("${media.location}")
     private String mediaLocation;
 
+    @Autowired
+        private LineService lineService;
+        
     @Override
     public String process(final Vers vers) throws Exception {
         if (vers == null) {
@@ -41,7 +48,11 @@ public class Processor implements ItemProcessor<Vers, String> {
                 line.setRank(entry.getKey());
                 line.setLocation(imageDefinition.getFilename());
                 line.setVers(vers);
-              //  System.out.println(imageDefinition.getFilename());
+                line.setLocation(imageDefinition.getFilename());
+                System.out.println(imageDefinition.getFilename());
+
+                lineService.createLine(line);
+                
                 return imageDefinition.getTitle();
             }
         } catch (Exception e) {

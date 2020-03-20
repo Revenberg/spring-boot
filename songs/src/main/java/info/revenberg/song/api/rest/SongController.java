@@ -5,9 +5,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import info.revenberg.domain.Bundle;
 import info.revenberg.domain.Song;
-import info.revenberg.song.exception.DataFormatException;
-import info.revenberg.song.service.BundleService;
-import info.revenberg.song.service.SongService;
+import info.revenberg.exception.DataFormatException;
+import info.revenberg.service.BundleService;
+import info.revenberg.service.SongService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

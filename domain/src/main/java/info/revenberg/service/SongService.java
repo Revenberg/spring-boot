@@ -1,7 +1,7 @@
-package info.revenberg.song.service;
+package info.revenberg.service;
 
 import info.revenberg.domain.Song;
-import info.revenberg.song.dao.jpa.SongRepository;
+import info.revenberg.dao.jpa.SongRepository;
 
 import java.util.Optional;
 

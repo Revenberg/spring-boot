@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import info.revenberg.song.dao.jpa.SongRepository;
+import info.revenberg.dao.jpa.SongRepository;
 import info.revenberg.domain.Bundle;
 import info.revenberg.domain.Song;
-import info.revenberg.song.service.BundleService;
-import info.revenberg.song.service.SongService;
+import info.revenberg.service.BundleService;
+import info.revenberg.service.SongService;
 import io.swagger.annotations.ApiParam;
 import java.util.Optional;
 
