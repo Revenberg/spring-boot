@@ -16,7 +16,7 @@ public class Reader implements ItemReader<Vers> {
 
 	@Override
 	public synchronized Vers read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! a !!!!!!!!!!!");
+		System.out.println(Long.toString(lastID) + "synchronized !!!!!!!!!!!!!!!! a !!!!!!!!!!!");
 
 		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
