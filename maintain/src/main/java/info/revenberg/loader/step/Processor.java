@@ -21,7 +21,7 @@ public class Processor implements ItemProcessor<Vers, String> {
         private LineService lineService;
         
     @Override
-    public String process(final Vers vers) throws Exception {
+    public synchronized String process(final Vers vers) throws Exception {
         if (vers == null) {
             return null;
         }
