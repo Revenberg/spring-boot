@@ -238,6 +238,7 @@ public class FindLinesInImage {
             String filepath = path + "/" + filename + "_" + Integer.toString(i + 1) + ".jpeg";
             ImageDefinition imageDefinition = new ImageDefinition((Integer) i);
 
+            filepath.replace("\"", "");
             System.out.println(filepath);
 
             imageDefinition.setFilename(filepath);
