@@ -58,10 +58,12 @@ public class Processor implements ItemProcessor<Vers, String> {
                 return imageDefinition.getTitle();
             }
         } catch (Exception e) {
-            System.out.println("=======================");            
+            System.out.println("===========Exception ============");            
             System.out.println(vers);
             System.out.println(mediaLocation);            
+            System.out.println(e);
             System.out.println(e.getMessage());
+            System.out.println(e.getLocalizedMessage());
         }
         return null;
     }
