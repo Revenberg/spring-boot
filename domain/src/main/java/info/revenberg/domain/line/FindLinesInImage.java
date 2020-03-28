@@ -111,7 +111,8 @@ public class FindLinesInImage {
         block = new Line2D.Double(line1.getP1().getX(), line1.getP1().getY() - 12, line2.getP2().getX() + 5,
                 line2.getP2().getY());
         blocks.put(Double.valueOf(block.getY1()), block);
-        saveImages(path, bundle + "." + song + "." + title + "." + Long.toString(id));
+        String newFilename= (bundle + "." + song + "." + title + "." + Long.toString(id));
+        saveImages(path, newFilename.replace(" ","_"));
     }
 
     public int getversLines() {
