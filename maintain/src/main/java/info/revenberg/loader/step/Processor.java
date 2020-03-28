@@ -50,6 +50,7 @@ public class Processor implements ItemProcessor<Vers, String> {
                 line.setLocation(imageDefinition.getFilename());
                 System.out.println("@@@@@@@@@@@@@@@@@@@@ a @@@@@@@@@@@@@@@@@@@@@");
                 System.out.println(imageDefinition.getFilename());
+                System.out.println(line);
 
                 Line line2 = lineService.createLine(line);
                 System.out.println(line2);
