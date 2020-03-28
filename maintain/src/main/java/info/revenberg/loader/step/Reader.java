@@ -36,7 +36,7 @@ public class Reader implements ItemReader<Vers> {
 		Vers vers = restTemplate.getForObject(uri, Vers.class);
 		//System.out.println(vers);
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b !!!!!!!!!!!");
-		TimeUnit.SECONDS.sleep(30);
+		TimeUnit.SECONDS.sleep(15);
 		return vers;
 
 		/*
