@@ -44,7 +44,8 @@ public class Processor implements ItemProcessor<Vers, String> {
                 ImageDefinition imageDefinition = entry.getValue();
 
                 Line line = new Line();
-                line.setRank(entry.getKey());
+                line.setText(imageDefinition.getFilename());
+                line.setRank(entry.getKey() + 1);
                 line.setLocation(imageDefinition.getFilename());
                 line.setVers(vers);
                 line.setLocation(imageDefinition.getFilename());
