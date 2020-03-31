@@ -3,6 +3,7 @@ package info.revenberg.loader.step;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.io.File;
 import java.io.IOException;
 
@@ -100,6 +101,7 @@ public class Writer implements ItemWriter<DataObject> {
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 4");
             }
         }
+        TimeUnit.SECONDS.sleep(30);
     }
 /*
 public test () {
