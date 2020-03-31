@@ -54,10 +54,6 @@ public class Processor implements ItemProcessor<Vers, DataObject> {
                 System.out.println(imageDefinition.getFilename());
                 System.out.println(line);
 
-                Line line2 = lineService.createLine(line);
-                System.out.println(line2);
-                System.out.println("@@@@@@@@@@@@@@@@@@@@ b @@@@@@@@@@@@@@@@@@@@@");
-                
                 rc.add(line);
                 System.out.println( imageDefinition.getTitle() );
                 System.out.println("@@@@@@@@@@@@@@@@@@@@ c @@@@@@@@@@@@@@@@@@@@@");
