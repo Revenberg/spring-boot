@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -22,7 +25,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
-
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.batch.item.ItemWriter;
 
 import info.revenberg.domain.Line;
@@ -99,6 +103,13 @@ public class Writer implements ItemWriter<DataObject> {
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 3");
                 System.out.println(response);
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 4");
+                JSONParser parser = new JSONParser();
+                JSONObject json = (JSONObject) parser.parse(response);
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 5");
+                System.out.println(json);
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 6");
+                System.out.println(json.get("filename"));
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 7");
             }
         }
         TimeUnit.SECONDS.sleep(30);
