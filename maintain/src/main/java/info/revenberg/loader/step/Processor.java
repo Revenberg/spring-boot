@@ -26,7 +26,6 @@ public class Processor implements ItemProcessor<Vers, DataObject> {
         if (vers == null) {
             return null;
         }
-        FindLinesInImage result = null;
         DataObject rc = new DataObject();
         
         try {

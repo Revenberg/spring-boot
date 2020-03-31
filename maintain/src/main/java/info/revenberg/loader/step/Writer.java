@@ -92,7 +92,9 @@ public class Writer implements ItemWriter<DataObject> {
     
         for (DataObject dataObject : dataObjects) {
             for (Line line : dataObject.getLines()) {
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 1");
                 System.out.println(line);
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 2");
             }
         }
     }
