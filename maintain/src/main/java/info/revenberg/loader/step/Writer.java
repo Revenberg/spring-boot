@@ -2,10 +2,12 @@ package info.revenberg.loader.step;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,12 +30,29 @@ import org.apache.http.protocol.HttpContext;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 
 import info.revenberg.domain.Line;
 import info.revenberg.loader.objects.DataObject;
 
+import java.net.URI;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 public class Writer implements ItemWriter<DataObject> {
-    
+    @Autowired
+   RestTemplate restTemplate;
+   
     public String uploadFile(String postEndpoint, String filename) throws IOException {
 
         File testUploadFile = new File(filename);
@@ -90,7 +109,19 @@ public class Writer implements ItemWriter<DataObject> {
         }
         return result.toString();
     }
+/*
+    public void createPost() {
+        String url = "http://40.122.30.210:8090/rest/v1/line";            
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<Line> entity = new HttpEntity<Line>(Line,headers);
+  
+        return restTemplate.exchange(
+           "https://example.com/endpoint", HttpMethod.POST, entity, String.class).getBody();
+     
+    }
+*/
     @Override
     public void write(List<? extends DataObject> dataObjects) throws Exception {
     
