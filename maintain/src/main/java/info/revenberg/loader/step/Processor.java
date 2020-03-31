@@ -8,11 +8,12 @@ import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;
 import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.domain.line.ImageDefinition;
+import info.revenberg.loader.objects.DataObject;
 import info.revenberg.service.LineService;
 
 import java.util.Map;
 
-public class Processor implements ItemProcessor<Vers, String> {
+public class Processor implements ItemProcessor<Vers, DataObject> {
 
     @Value("${media.location}")
     private String mediaLocation;
@@ -21,12 +22,13 @@ public class Processor implements ItemProcessor<Vers, String> {
         private LineService lineService;
         
     @Override
-    public synchronized String process(final Vers vers) throws Exception {
+    public synchronized DataObject process(final Vers vers) throws Exception {
         if (vers == null) {
             return null;
         }
         FindLinesInImage result = null;
-
+        DataObject rc = new DataObject();
+        
         try {
             //System.out.println("process A");
             //System.out.println(vers);
@@ -57,7 +59,9 @@ public class Processor implements ItemProcessor<Vers, String> {
                 System.out.println(line2);
                 System.out.println("@@@@@@@@@@@@@@@@@@@@ b @@@@@@@@@@@@@@@@@@@@@");
                 
-                return imageDefinition.getTitle();
+                rc.add(line);
+                System.out.println( imageDefinition.getTitle() );
+                System.out.println("@@@@@@@@@@@@@@@@@@@@ c @@@@@@@@@@@@@@@@@@@@@");
             }
         } catch (Exception e) {
             System.out.println("===========Exception ============");            
@@ -67,6 +71,6 @@ public class Processor implements ItemProcessor<Vers, String> {
             System.out.println(e.getMessage());
             System.out.println(e.getLocalizedMessage());
         }
-        return null;
+        return rc;
     }
 }

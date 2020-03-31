@@ -1,5 +1,7 @@
 package info.revenberg.loader.config;
 
+import java.util.List;
+
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
@@ -13,9 +15,11 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;
 //import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.loader.listener.JobCompletionListener;
+import info.revenberg.loader.objects.DataObject;
 //import info.revenberg.loader.objects.DataObject;
 import info.revenberg.loader.step.Processor;
 import info.revenberg.loader.step.Reader;
@@ -49,7 +53,7 @@ public class BatchConfig {
 @Bean
 	public Step step1() {
 		return stepBuilderFactory.get("step1")
-				.<Vers, String> chunk(1)
+				.<Vers, DataObject > chunk(1)
 				.reader(new Reader())							
 				.processor(new Processor())
 				.writer(new Writer())

@@ -25,7 +25,10 @@ import org.apache.http.protocol.HttpContext;
 
 import org.springframework.batch.item.ItemWriter;
 
-public class Writer implements ItemWriter<String> {
+import info.revenberg.domain.Line;
+import info.revenberg.loader.objects.DataObject;
+
+public class Writer implements ItemWriter<DataObject> {
 
     public String uploadFile(String postEndpoint, String filename) throws IOException {
 
@@ -85,10 +88,12 @@ public class Writer implements ItemWriter<String> {
     }
 
     @Override
-    public void write(List<? extends String> images) {
-
-        for (String image : images) {
-            System.out.println(image);
+    public void write(List<? extends DataObject> dataObjects) throws Exception {
+    
+        for (DataObject dataObject : dataObjects) {
+            for (Line line : dataObject.getLines()) {
+                System.out.println(line);
+            }
         }
     }
 /*
@@ -121,4 +126,5 @@ public test () {
         }
     }
 */
+   
 }
