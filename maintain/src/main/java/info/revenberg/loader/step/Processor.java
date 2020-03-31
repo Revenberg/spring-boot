@@ -1,7 +1,6 @@
 package info.revenberg.loader.step;
 
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import info.revenberg.domain.Line;
@@ -9,18 +8,14 @@ import info.revenberg.domain.Vers;
 import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.domain.line.ImageDefinition;
 import info.revenberg.loader.objects.DataObject;
-import info.revenberg.service.LineService;
 
 import java.util.Map;
 
 public class Processor implements ItemProcessor<Vers, DataObject> {
 
-    @Value("${media.location}")
-    private String mediaLocation;
-
-    @Autowired
-        private LineService lineService;
-        
+    @Value("${media.temp}")
+    private String mediaTempLocation;
+       
     @Override
     public synchronized DataObject process(final Vers vers) throws Exception {
         if (vers == null) {
@@ -35,8 +30,8 @@ public class Processor implements ItemProcessor<Vers, DataObject> {
             //System.out.println(uri);
 
             //mediaLocation = "D:/Songs/temp";
-            mediaLocation = "/var/songs/media";
-            FindLinesInImage images = new FindLinesInImage(uri, mediaLocation + "/vers",
+            mediaTempLocation = "/var/songs/temp";
+            FindLinesInImage images = new FindLinesInImage(uri, mediaTempLocation + "/vers",
                     vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
 
             //System.out.println("process B");
@@ -61,7 +56,7 @@ public class Processor implements ItemProcessor<Vers, DataObject> {
         } catch (Exception e) {
             System.out.println("===========Exception ============");            
             System.out.println(vers);
-            System.out.println(mediaLocation);            
+            System.out.println(mediaTempLocation);            
             System.out.println(e);
             System.out.println(e.getMessage());
             System.out.println(e.getLocalizedMessage());

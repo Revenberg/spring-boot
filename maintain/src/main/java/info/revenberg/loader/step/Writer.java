@@ -1,6 +1,5 @@
 package info.revenberg.loader.step;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -29,7 +28,7 @@ import info.revenberg.domain.Line;
 import info.revenberg.loader.objects.DataObject;
 
 public class Writer implements ItemWriter<DataObject> {
-
+    
     public String uploadFile(String postEndpoint, String filename) throws IOException {
 
         File testUploadFile = new File(filename);
@@ -95,6 +94,10 @@ public class Writer implements ItemWriter<DataObject> {
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 1");
                 System.out.println(line);
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 2");
+                String response = uploadFile("http://40.122.30.210:8090/rest/v1/image/upload/", line.getLocation());
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 3");
+                System.out.println(response);
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 4");
             }
         }
     }
