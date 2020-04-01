@@ -109,8 +109,9 @@ public class Writer implements ItemWriter<DataObject> {
                 System.out.println(json.get("filename"));
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 7");
                 Line lineResponse = sendLine.createPost(line);
-                System.out.println(lineResponse);
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 8");
+                System.out.println(lineResponse);
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 9");
             }
         }
         TimeUnit.SECONDS.sleep(30);
