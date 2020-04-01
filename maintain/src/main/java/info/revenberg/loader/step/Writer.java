@@ -2,11 +2,7 @@ package info.revenberg.loader.step;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import java.io.File;
@@ -30,29 +26,11 @@ import org.apache.http.protocol.HttpContext;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-
 import info.revenberg.domain.Line;
 import info.revenberg.loader.objects.DataObject;
 
-import java.net.URI;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 public class Writer implements ItemWriter<DataObject> {
-    @Autowired
-   RestTemplate restTemplate;
-   
+
     public String uploadFile(String postEndpoint, String filename) throws IOException {
 
         File testUploadFile = new File(filename);
@@ -109,22 +87,11 @@ public class Writer implements ItemWriter<DataObject> {
         }
         return result.toString();
     }
-/*
-    public void createPost() {
-        String url = "http://40.122.30.210:8090/rest/v1/line";            
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-        HttpEntity<Line> entity = new HttpEntity<Line>(Line,headers);
-  
-        return restTemplate.exchange(
-           "https://example.com/endpoint", HttpMethod.POST, entity, String.class).getBody();
-     
-    }
-*/
     @Override
     public void write(List<? extends DataObject> dataObjects) throws Exception {
-    
+
+        SendLine sendLine = new SendLine();
         for (DataObject dataObject : dataObjects) {
             for (Line line : dataObject.getLines()) {
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 1");
@@ -141,39 +108,26 @@ public class Writer implements ItemWriter<DataObject> {
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 6");
                 System.out.println(json.get("filename"));
                 System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 7");
+                Line lineResponse = sendLine.createPost(line);
+                System.out.println(lineResponse);
+                System.out.println("WWWWWWWWWRRRRRRRRRRRRRIIIIIIIIIITTTTTTTTTTEEEEEEEEE 8");
             }
         }
         TimeUnit.SECONDS.sleep(30);
     }
-/*
-public test () {
-    List<? extends vers>  messages = null;
-        int count = 0;
-        int retry = 3;
-        for (Vers msg : messages) {
-            if (msg != null) {
-                if (msg.getFilename() != "") {
-                    counter++;
-                    System.out.println(Integer.toString(counter) + " " + Integer.toString(messages.size()) + " "
-                            + Integer.toString(count) + " Writing the data " + " - " + msg.getBundleName() + " - "
-                            + msg.getSongName());
-                    retry = 15;
-                    while (retry > 0) {
-                        try {
-                            uploadFile("http://40.122.30.210:8090/rest/v1/ppt/" + msg.getBundleName() + "/"
-                                    + msg.getSongName(), msg.getFilename());
-                            retry = 0;
-                        } catch (Exception e) {
-                            retry--;
-                            System.out.println(Integer.toString(retry) + " Writing the data " + " - "
-                                    + msg.getBundleName() + " - " + msg.getSongName());
-                        }
-                    }
-                }
-                count++;
-            }
-        }
-    }
-*/
-   
+    /*
+     * public test () { List<? extends vers> messages = null; int count = 0; int
+     * retry = 3; for (Vers msg : messages) { if (msg != null) { if
+     * (msg.getFilename() != "") { counter++;
+     * System.out.println(Integer.toString(counter) + " " +
+     * Integer.toString(messages.size()) + " " + Integer.toString(count) +
+     * " Writing the data " + " - " + msg.getBundleName() + " - " +
+     * msg.getSongName()); retry = 15; while (retry > 0) { try {
+     * uploadFile("http://40.122.30.210:8090/rest/v1/ppt/" + msg.getBundleName() +
+     * "/" + msg.getSongName(), msg.getFilename()); retry = 0; } catch (Exception e)
+     * { retry--; System.out.println(Integer.toString(retry) + " Writing the data "
+     * + " - " + msg.getBundleName() + " - " + msg.getSongName()); } } } count++; }
+     * } }
+     */
+
 }
