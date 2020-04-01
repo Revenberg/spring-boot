@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import java.util.Collections;
+
+import com.google.gson.Gson;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,6 +29,12 @@ public class SendLine {
         // set `accept` header
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         System.out.println("createPost 2");
+        Gson gson = new Gson();
+        String json = gson.toJson(line);
+        System.out.println("createPost 2b");
+        
+        System.out.println(json);
+        System.out.println("createPost 2b");
         // send POST request
         ResponseEntity<Line> response = this.restTemplate.postForEntity(url, line, Line.class);
         System.out.println("createPost 3");
