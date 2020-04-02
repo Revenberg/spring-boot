@@ -10,6 +10,11 @@ import java.util.Collections;
 
 import com.google.gson.Gson;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,6 +41,32 @@ public class SendLine {
         System.out.println(json);
         System.out.println("createPost 2b");
         // send POST request
+
+        HttpClient httpClient = HttpClientBuilder.create().build(); //Use this instead 
+
+        try {
+        
+            HttpPost request = new HttpPost("http://yoururl");
+            StringEntity params =new StringEntity("details={\"name\":\"myname\",\"age\":\"20\"} ");
+            request.addHeader("content-type", "application/x-www-form-urlencoded");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            System.out.println(response);
+            //handle response here...
+        
+        }catch (Exception ex) {
+            System.out.println("createPost 2b");
+            System.out.println(ex);
+            System.out.println("createPost 2b");
+            //handle exception here
+        
+        } finally {
+            //Deprecated
+            //httpClient.getConnectionManager().shutdown(); 
+        }
+        System.out.println("createPost 9");
+        return line;
+/*
         ResponseEntity<Line> response = this.restTemplate.postForEntity(url, line, Line.class);
         System.out.println("createPost 3");
         System.out.println(response);
@@ -46,5 +77,6 @@ public class SendLine {
         } else {
             return null;
         }
+        */
     }
 }
