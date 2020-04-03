@@ -35,7 +35,7 @@ public class SendLine {
             StringEntity entity = new StringEntity(json, ContentType.APPLICATION_FORM_URLENCODED);
 
             HttpClient httpClient = HttpClientBuilder.create().build();
-            HttpPost request = new HttpPost("http://localhost:8080/register");
+            HttpPost request = new HttpPost(url);
             request.setEntity(entity);
 
             HttpResponse response = httpClient.execute(request);
