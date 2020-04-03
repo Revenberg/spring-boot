@@ -39,6 +39,7 @@ public class LineService {
     
     public Page<Line> getAllLines(Integer page, Integer size) {
 
+        System.out.println("@@@@@@@@@@@@@@@@@@@@ getAllLines @@@@@@@@@@@@@@@@@@@@@");
         Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
 
         Page<Line> pageOflines = lineRepository.findAll(pageable);
