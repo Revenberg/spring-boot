@@ -46,8 +46,8 @@ public class SendLine {
 
         try {
         
-            HttpPost request = new HttpPost("http://yoururl");
-            StringEntity params =new StringEntity("details={\"name\":\"myname\",\"age\":\"20\"} ");
+            HttpPost request = new HttpPost(url);
+            StringEntity params =new StringEntity(json);
             request.addHeader("content-type", "application/x-www-form-urlencoded");
             request.setEntity(params);
             HttpResponse response = httpClient.execute(request);
