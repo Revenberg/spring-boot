@@ -17,7 +17,7 @@ public class Line extends AuditModel  {
 
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
