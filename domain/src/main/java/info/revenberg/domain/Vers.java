@@ -16,8 +16,8 @@ public class Vers extends AuditModel {
     private static final long serialVersionUID = -3744664716090284011L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
     @Column(nullable = false)
