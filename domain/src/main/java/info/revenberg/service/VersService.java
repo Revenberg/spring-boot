@@ -20,11 +20,13 @@ public class VersService {
     public VersService() {
     }
 
-    public Vers createVers(Vers vers) {
-        if (vers.getVersid() == 0) {
-        	vers.setVersid( versRepository.getMaxVersId() + 1 );
+    public Vers createVers(Vers vers) {        
+        Vers newVers = versRepository.save(vers);
+        if (newVers.getVersid() == 0) {
+            newVers.setVersid( newVers.getId() );
+            newVers = versRepository.save(vers);
         }
-        return versRepository.save(vers);
+        return newVers;
     }
 
     public Optional<Vers> getVers(long id) {

@@ -30,10 +30,12 @@ public class SongService {
     }
 
     public Song createSong(Song song) {
-        if (song.getSongid() == 0) {
-        	song.setSongid( songRepository.getMaxSongId() + 1 );
+        Song newSong = songRepository.save(song);
+        if (newSong.getSongid() == 0) {
+            newSong.setSongid( newSong.getId() );
+            newSong = songRepository.save(song);
         }
-        return songRepository.save(song);
+        return newSong;
     }
 
     public Optional<Song> getSong(long id) {

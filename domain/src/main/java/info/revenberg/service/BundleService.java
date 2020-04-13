@@ -22,10 +22,12 @@ public class BundleService {
     }
 
     public Bundle createBundle(Bundle bundle) {
-        if (bundle.getBundleid() == 0) {
-            bundle.setBundleid(this.getMaxBundleId() + 1);
+        Bundle newBundle = bundleRepository.save(bundle);
+        if (newBundle.getBundleid() == 0) {
+            newBundle.setBundleid(newBundle.getId() );
+            newBundle = bundleRepository.save(bundle);
         }
-        return bundleRepository.save(bundle);
+        return newBundle;
     }
 
     public Optional<Bundle> getBundle(long id) {
