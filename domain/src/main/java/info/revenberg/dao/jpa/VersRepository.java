@@ -24,6 +24,6 @@ public interface VersRepository extends PagingAndSortingRepository<Vers, Long> {
     @Query(value = "SELECT min(v.id) FROM vers v where v.id>:versid order by v.id", nativeQuery = true)
     long findNextId(@Param("versid") long versid);
 
-    @Query(value = "SELECT COALESCE(max(bundleid), 0) FROM vers v ", nativeQuery = true)
+    @Query(value = "SELECT COALESCE(max(versid), 0) FROM vers v ", nativeQuery = true)
     Long getMaxVersId();
 }
