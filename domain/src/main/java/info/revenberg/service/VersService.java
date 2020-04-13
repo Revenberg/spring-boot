@@ -21,6 +21,9 @@ public class VersService {
     }
 
     public Vers createVers(Vers vers) {
+        if (vers.getVersid() == 0) {
+        	vers.setVersid( versRepository.getMaxVersId() + 1 );
+        }
         return versRepository.save(vers);
     }
 

@@ -30,4 +30,7 @@ public interface SongRepository extends JpaRepository<Song, Long>, PagingAndSort
 
 	@Query(value = "SELECT * FROM song s, bundle b where b.id=:bundleid AND b.bundleid=s.fk_bundle ", nativeQuery = true)
     List<Song> findAllByBundleid(@Param("bundleid") long bundleid);
+
+    @Query(value = "SELECT COALESCE(max(bundleid), 0) FROM song s ", nativeQuery = true)
+    Long getMaxSongId();
 }

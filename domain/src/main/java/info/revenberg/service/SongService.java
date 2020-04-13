@@ -31,7 +31,7 @@ public class SongService {
 
     public Song createSong(Song song) {
         if (song.getSongid() == 0) {
-        	song.setSongid( this.getSongId() + 1 );
+        	song.setSongid( songRepository.getMaxSongId() + 1 );
         }
         return songRepository.save(song);
     }
@@ -60,7 +60,7 @@ public class SongService {
         return songRepository.findSongByNameInBundle(name, bundleid);
     }
 
-    public long getSongId() {
+    public long getSongId() {        
         return songRepository.getSongId();
     }
 

@@ -15,6 +15,7 @@ import info.revenberg.domain.AuditModel;
 public class Line extends AuditModel  {
     private static final long serialVersionUID = -8627990442911682692L;
 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
