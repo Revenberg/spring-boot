@@ -35,6 +35,9 @@ public class SongService {
             newSong.setSongid( newSong.getId() );
             newSong = songRepository.save(song);
         }
+        System.out.println("============ createSong ====================");
+        System.out.println(newSong);
+        System.out.println("================================");
         return newSong;
     }
 
@@ -43,7 +46,8 @@ public class SongService {
     }
 
     public void updateSong(Song song) {
-        songRepository.save(song);
+        System.out.println("============ updateSong ====================");
+        songRepository.save(song);        
     }
 
     public void deleteSong(Long id) {
