@@ -19,8 +19,8 @@ import info.revenberg.domain.AuditModel;
 public class Bundle extends AuditModel {    
     private static final long serialVersionUID = -4206755717683730837L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private long id;
 
     @Column(nullable = false)
