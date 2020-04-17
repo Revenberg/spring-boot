@@ -42,7 +42,6 @@ public class Vers extends AuditModel {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_song", referencedColumnName = "songid")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonBackReference
     private Song song;
 
     @OneToMany(mappedBy = "line", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
