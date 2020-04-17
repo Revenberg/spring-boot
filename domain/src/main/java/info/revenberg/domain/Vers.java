@@ -1,7 +1,11 @@
 package info.revenberg.domain;
 
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
@@ -35,12 +39,27 @@ public class Vers extends AuditModel {
     private String location;
     private int versLines;
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_song", referencedColumnName = "songid")
     @OnDelete(action = OnDeleteAction.CASCADE)
 //    @JsonBackReference
+
+@OneToMany(mappedBy = "line", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+@JsonIgnore
+private Set<Line> lines;
+
+
     private Song song;
+
+    public void setLines(Set<Line> lines) {
+        this.lines = lines;
+    }
+
+    public Set<Line> getLines() {
+        return lines;
+    }
+
+
 
     public Vers() {
     }

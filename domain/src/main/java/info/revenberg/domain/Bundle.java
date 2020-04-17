@@ -32,8 +32,7 @@ public class Bundle extends AuditModel {
     @Column()
     private String mnemonic;
 
-    //@OneToMany(mappedBy = "bundle", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ManyToMany(mappedBy = "bundle", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bundle", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Song> songs;
 
