@@ -18,7 +18,7 @@ import info.revenberg.domain.AuditModel;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Vers extends AuditModel {
     private static final long serialVersionUID = -3744664716090284011L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -35,21 +35,19 @@ public class Vers extends AuditModel {
 
     @Column(nullable = false)
     private String name;
-    
+
     private String location;
     private int versLines;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_song", referencedColumnName = "songid")
     @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JsonBackReference
-
-@OneToMany(mappedBy = "line", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-@JsonIgnore
-private Set<Line> lines;
-
-
+    // @JsonBackReference
     private Song song;
+
+    @OneToMany(mappedBy = "line", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<Line> lines;
 
     public void setLines(Set<Line> lines) {
         this.lines = lines;
@@ -58,8 +56,6 @@ private Set<Line> lines;
     public Set<Line> getLines() {
         return lines;
     }
-
-
 
     public Vers() {
     }
@@ -123,14 +119,14 @@ private Set<Line> lines;
     public void setLocation(String location) {
         this.location = location;
     }
-    
+
     public int getVersLines() {
         return versLines;
     }
 
     public void setVersLines(int versLines) {
         this.versLines = versLines;
-    } 
+    }
 
     public boolean equals(Object o) {
         if (this == o)
