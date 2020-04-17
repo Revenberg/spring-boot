@@ -8,9 +8,9 @@ kill ${process}
 
 cd ~
 mkdir ~/songs/db -p 2>/dev/null 2>/dev/null
-sudo rm /var/log/sander/ -rf
-sudo mkdir /var/log/sander/
-sudo chown sander:sander /var/log/sander/
+sudo rm /var/log/songs/ -rf
+sudo mkdir /var/log/songs/
+sudo chown sander:sander /var/log/songs/
 
 
 echo configuration-service

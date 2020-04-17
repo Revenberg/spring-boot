@@ -14,6 +14,6 @@ cd ~/spring-boot
 git pull
 mvn clean install package
 
-nohup mvn spring-boot:run  -rf songs > /var/log/sander/songs.log &
+nohup mvn spring-boot:run  -rf songs > /var/log/songs/songs.log &
 
 cd ~

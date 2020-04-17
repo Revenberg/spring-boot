@@ -265,7 +265,7 @@
     <build>
 <!--        <resources>
             <resource>
-                <directory>/home/sander/songs/resources</directory>
+                <directory>/home/songs/songs/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>

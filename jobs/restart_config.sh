@@ -11,6 +11,6 @@ echo start configuration-service
 cd ~/configuration-service
 git pull
 mvn clean install package
-nohup mvn spring-boot:run > /var/log/sander/configuration-service.log &
+nohup mvn spring-boot:run > /var/log/songs/configuration-service.log &
 
 cd ~
