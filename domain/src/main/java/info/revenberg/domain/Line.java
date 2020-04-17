@@ -34,7 +34,8 @@ public class Line extends AuditModel  {
     double minX;
     double MaxX;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "fk_vers", referencedColumnName = "versid")
     @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonBackReference
