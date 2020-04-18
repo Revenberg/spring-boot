@@ -8,9 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
+//import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface BundleRepository extends JpaRepository<Bundle, Long>, PagingAndSortingRepository<Bundle, Long> {
+// , PagingAndSortingRepository<Bundle, Long>
+public interface BundleRepository extends JpaRepository<Bundle, Long> {
     Page<Bundle> findAll(Pageable pageable);
 
     @Query(value = "SELECT * FROM bundle b order by name", nativeQuery = true)
