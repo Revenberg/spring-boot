@@ -50,7 +50,8 @@ spring:
 #        auto: none
       ddl-auto: update
 #      dialect: org.hibernate.dialect.SQLiteDialect
-    
+      connection:
+          autocommit: true
   datasource:
     url: "jdbc:sqlite:/var/songs/db/songs.db"
     driverClassName: "org.sqlite.JDBC"
