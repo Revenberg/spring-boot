@@ -53,7 +53,7 @@ public class Vers extends AuditModel {
     }
 
     public Set<Line> getLines() {
-        return lines;
+        return this.lines;
     }
 
     public Vers() {

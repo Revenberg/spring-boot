@@ -49,7 +49,7 @@ public class Song extends AuditModel {
     }
 
     public Set<Vers> getVerses() {
-        return verses;
+        return this.verses;
     }
 
     public Song() {
