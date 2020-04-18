@@ -44,7 +44,7 @@ public class Vers extends AuditModel {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Song song;
 
-    @OneToMany(mappedBy = "line", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "vers", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Line> lines;
 
