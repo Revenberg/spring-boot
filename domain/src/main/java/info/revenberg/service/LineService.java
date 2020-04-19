@@ -22,7 +22,9 @@ public class LineService {
 
     public Line createLine(Line line) {
         System.out.println("@@@@@@@@@@@@@@@@@@@@ createLine @@@@@@@@@@@@@@@@@@@@@");
-        return lineRepository.save(line);
+        line = lineRepository.save(line);
+        lineRepository.flush();
+        return line;
     }
 
     public Optional<Line> getLine(long id) {
@@ -31,6 +33,7 @@ public class LineService {
 
     public void updateLine(Line line) {
         lineRepository.save(line);
+        lineRepository.flush();
     }
 
     public void deleteLine(Long id) {

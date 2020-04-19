@@ -50,6 +50,7 @@ public class BundleWebController {
         }         
         
         bundleRepository.save(bundle);
+        bundleRepository.flush();
         model.addAttribute("bundles", bundleRepository.findAll());
         return "index";
     }

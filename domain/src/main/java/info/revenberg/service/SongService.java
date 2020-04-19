@@ -36,6 +36,7 @@ public class SongService {
             newSong = songRepository.save(song);
         }
         System.out.println("============ createSong ====================");
+        songRepository.flush();
         System.out.println(newSong);
         System.out.println("================================");
         return newSong;
@@ -47,7 +48,8 @@ public class SongService {
 
     public void updateSong(Song song) {
         System.out.println("============ updateSong ====================");
-        songRepository.save(song);        
+        songRepository.save(song); 
+        songRepository.flush();       
     }
 
     public void deleteSong(Long id) {
