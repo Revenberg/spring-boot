@@ -66,8 +66,7 @@ public class SongWebController {
             return "song-add";
         }         
         
-        songRepository.save(song);
-        songRepository.flush();
+        songRepository.save(song);        
         model.addAttribute("songs", songRepository.findAll());
         return "index";
     }

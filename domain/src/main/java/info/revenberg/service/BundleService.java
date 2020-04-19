@@ -24,12 +24,9 @@ public class BundleService {
 
     public Bundle createBundle(Bundle bundle) {
         Bundle newBundle = bundleRepository.save(bundle);
-        bundleRepository.flush();
         if (newBundle.getBundleid() == 0) {
             newBundle.setBundleid(newBundle.getId() );
             newBundle = bundleRepository.save(bundle);
-            bundleRepository.flush();
-
         }        
         return newBundle;
     }
@@ -39,13 +36,11 @@ public class BundleService {
     }
 
     public void updateBundle(Bundle bundle) {
-        bundleRepository.save(bundle);
-        bundleRepository.flush();
+        bundleRepository.save(bundle);        
     }
 
     public void deleteBundle(Long id) {
         bundleRepository.deleteById(id);
-        bundleRepository.flush();
     }
     
     public Page<Bundle> getAllBundles(Integer page, Integer size) {

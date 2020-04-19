@@ -49,8 +49,7 @@ public class BundleWebController {
             return "bundle-add";
         }         
         
-        bundleRepository.save(bundle);
-        bundleRepository.flush();
+        bundleRepository.save(bundle);        
         model.addAttribute("bundles", bundleRepository.findAll());
         return "index";
     }

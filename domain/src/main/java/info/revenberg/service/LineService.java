@@ -23,7 +23,6 @@ public class LineService {
     public Line createLine(Line line) {
         System.out.println("@@@@@@@@@@@@@@@@@@@@ createLine @@@@@@@@@@@@@@@@@@@@@");
         line = lineRepository.save(line);
-        lineRepository.flush();
         return line;
     }
 
@@ -33,7 +32,6 @@ public class LineService {
 
     public void updateLine(Line line) {
         lineRepository.save(line);
-        lineRepository.flush();
     }
 
     public void deleteLine(Long id) {
