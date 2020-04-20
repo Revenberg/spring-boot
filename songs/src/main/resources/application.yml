@@ -69,7 +69,7 @@ spring:
 
   
 # Enabling H2 Console
-   h2:
+  h2:
     console:
       enabled: true
       path: "/h2-console"
