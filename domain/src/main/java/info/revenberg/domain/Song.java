@@ -22,8 +22,8 @@ public class Song extends AuditModel {
     public final static String secretKey = "ssshhhhhhhhhhh!!!!";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "song_sequence")
+    @GenericGenerator(name = "song_sequence", strategy = "native")
     private long id;
 
     @Column(nullable = false)
