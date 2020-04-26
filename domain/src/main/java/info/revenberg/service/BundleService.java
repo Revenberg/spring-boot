@@ -17,18 +17,15 @@ import org.springframework.data.domain.Pageable;
 public class BundleService {
     @Autowired
     private BundleRepository bundleRepository;
-
     
-    public BundleService() {
+    public BundleService() {    
     }
 
     public Bundle createBundle(Bundle bundle) {
-        Bundle newBundle = bundleRepository.save(bundle);
-        if (newBundle.getBundleid() == 0) {
-            newBundle.setBundleid(newBundle.getId() );
-            newBundle = bundleRepository.save(bundle);
-        }        
-        return newBundle;
+        if (bundle.getBundleid() == 0) {
+            bundle.setBundleid(this.getMaxBundleId() + 1);            
+        }
+        return bundleRepository.save(bundle);        
     }
 
     public Optional<Bundle> getBundle(long id) {
@@ -36,13 +33,13 @@ public class BundleService {
     }
 
     public void updateBundle(Bundle bundle) {
-        bundleRepository.save(bundle);        
+        bundleRepository.save(bundle);
     }
 
     public void deleteBundle(Long id) {
         bundleRepository.deleteById(id);
     }
-    
+
     public Page<Bundle> getAllBundles(Integer page, Integer size) {
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
@@ -53,16 +50,16 @@ public class BundleService {
 
     public List<Bundle> getAllBundlesByName(String name) {
         return bundleRepository.findBundleAllByName(name);
-    }    
+    }
 
     public List<Bundle> getAllBundlesByMnemonic(String mnemonic) {
 
         return bundleRepository.findAllBundleByMnemonic(mnemonic);
-    }    
+    }
 
     public Bundle getBundleByName(String bundle) {
         return bundleRepository.findBundleByName(bundle);
-    }    
+    }
 
     public Bundle getBundleByMnemonic(String mnemonic) {
 
