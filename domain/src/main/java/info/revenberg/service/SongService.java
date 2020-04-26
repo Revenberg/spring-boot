@@ -30,15 +30,11 @@ public class SongService {
     }
 
     public Song createSong(Song song) {
-        Song newSong = songRepository.save(song);
-        if (newSong.getSongid() == 0) {
-            newSong.setSongid( newSong.getId() );
-            newSong = songRepository.save(song);
+        
+        if (song.getSongid() == 0) {
+            song.setSongid( this.getMaxSongId() + 1);
         }
-        System.out.println("============ createSong ====================");
-        System.out.println(newSong);
-        System.out.println("================================");
-        return newSong;
+        return songRepository.save(song);
     }
 
     public Optional<Song> getSong(long id) {
@@ -75,6 +71,9 @@ public class SongService {
 
         Page<Song> pageOfSongs = songRepository.findAllOfBundle(pageable, bundleid);
         return pageOfSongs;
+    }
+    
+    public Long getMaxSongId() {
+		return songRepository.getMaxSongId();
 	}
-
 }

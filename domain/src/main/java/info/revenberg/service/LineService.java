@@ -21,7 +21,7 @@ public class LineService {
     }
 
     public Line createLine(Line line) {
-        System.out.println("@@@@@@@@@@@@@@@@@@@@ createLine @@@@@@@@@@@@@@@@@@@@@");
+        
         line = lineRepository.save(line);
         return line;
     }

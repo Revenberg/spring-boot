@@ -21,12 +21,10 @@ public class VersService {
     }
 
     public Vers createVers(Vers vers) {        
-        Vers newVers = versRepository.save(vers);
-        if (newVers.getVersid() == 0) {
-            newVers.setVersid( newVers.getId() );
-            newVers = versRepository.save(vers);
+        if (vers.getVersid() == 0) {
+            vers.setVersid( this.getMaxVersId() + 1);
         }
-        return newVers;
+        return versRepository.save(vers);
     }
 
     public Optional<Vers> getVers(long id) {
@@ -55,5 +53,9 @@ public class VersService {
 
 	public Vers findVersInSong(int rank, long songid) {
 		return versRepository.findVersInSong(rank, songid);
+    }
+    
+    public Long getMaxVersId() {
+		return versRepository.getMaxVersId();
 	}
 }
