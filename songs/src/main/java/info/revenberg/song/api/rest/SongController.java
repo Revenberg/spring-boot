@@ -66,6 +66,17 @@ public class SongController extends AbstractRestHandler {
                 return songs;
         }
 
+        @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json" })
+        @ResponseStatus(HttpStatus.OK)
+        @ApiOperation(value = "Get a single song.", notes = "You have to provide a valid song ID.")
+        public @ResponseBody Song getSong(
+                        @ApiParam(value = "The ID of the song.", required = true) @PathVariable("id") Long id,
+                        HttpServletRequest request, HttpServletResponse response) throws Exception {
+                Optional<Song> song = this.songService.getSong(id);
+                checkResourceFound(song);
+                return song.get();
+        }
+
         @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {
                         "application/json" })
         @ResponseStatus(HttpStatus.NO_CONTENT)

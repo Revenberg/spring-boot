@@ -39,7 +39,6 @@ public class SongService {
     }
 
     public void updateSong(Song song) {
-        System.out.println("============ updateSong ====================");
         songRepository.save(song);
     }
 
