@@ -58,16 +58,16 @@ public class SeedStarterService {
     public List<SeedStarter> findAll() {
         return this.seedstarterRepository.findAll();
     }
-    
+
     public void add(final SeedStarter seedStarter) {
         this.seedstarterRepository.add(seedStarter);
     }
 
-	public List<Song> findAllSongs(long bundleid) {
-		return this.songRepository.findAllByBundleid(bundleid);
-	}
+    public List<Song> findAllSongs(long id) {
+        return this.songRepository.findAllById(id);
+    }
 
-	public List<Vers> findAllVerses(long songid) {
-		return this.versRepository.findAllByVersid(songid);
-	}        
+    public List<Vers> findAllVerses(long songid) {
+        return this.versRepository.findAllById(songid);
+    }
 }

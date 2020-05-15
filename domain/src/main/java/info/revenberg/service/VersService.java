@@ -20,10 +20,7 @@ public class VersService {
     public VersService() {
     }
 
-    public Vers createVers(Vers vers) {        
-        if (vers.getVersid() == 0) {
-            vers.setVersid( this.getMaxVersId() + 1);
-        }
+    public Vers createVers(Vers vers) {
         return versRepository.save(vers);
     }
 
@@ -31,9 +28,9 @@ public class VersService {
         return versRepository.findById(id);
     }
 
-    public Long getNextVersId(long id) {
+    public Long getNextId(long id) {
         return versRepository.findNextId(id);
-    }    
+    }
 
     public void updateVers(Vers vers) {
         versRepository.save(vers);
@@ -42,7 +39,7 @@ public class VersService {
     public void deleteVers(Long id) {
         versRepository.deleteById(id);
     }
-    
+
     public Page<Vers> getAllVerses(Integer page, Integer size) {
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
@@ -51,11 +48,11 @@ public class VersService {
         return pageOfVerses;
     }
 
-	public Vers findVersInSong(int rank, long songid) {
-		return versRepository.findVersInSong(rank, songid);
+    public Vers findVersInSong(int rank, long id) {
+        return versRepository.findVersInSong(rank, id);
     }
-    
-    public Long getMaxVersId() {
-		return versRepository.getMaxVersId();
-	}
+
+    public Long getMaxId() {
+        return versRepository.getMaxId();
+    }
 }

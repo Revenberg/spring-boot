@@ -15,10 +15,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 
-
 @Service
 public class SongService {
-    //private static final Logger logger = Logger.getLogger(FileService.class.getName());
+    // private static final Logger logger =
+    // Logger.getLogger(FileService.class.getName());
 
     @Autowired
     private SongRepository songRepository;
@@ -30,10 +30,7 @@ public class SongService {
     }
 
     public Song createSong(Song song) {
-        
-        if (song.getSongid() == 0) {
-            song.setSongid( this.getMaxSongId() + 1);
-        }
+
         return songRepository.save(song);
     }
 
@@ -43,13 +40,13 @@ public class SongService {
 
     public void updateSong(Song song) {
         System.out.println("============ updateSong ====================");
-        songRepository.save(song); 
+        songRepository.save(song);
     }
 
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
     }
-    
+
     public Page<Song> getAllSongs(Integer page, Integer size) {
 
         Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
@@ -58,22 +55,18 @@ public class SongService {
         return pageOfSongs;
     }
 
-    public Song findSongByNameInBundle(String name, long bundleid) {
-        return songRepository.findSongByNameInBundle(name, bundleid);
+    public Song findSongByNameInBundle(String name, long id) {
+        return songRepository.findSongByNameInBundle(name, id);
     }
 
-    public long getSongId() {        
-        return songRepository.getSongId();
-    }
+    public Page<Song> getAllSongsOfBundle(Integer page, Integer size, Long id) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
 
-	public Page<Song> getAllSongsOfBundle(Integer page, Integer size, Long bundleid) {
-		Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
-
-        Page<Song> pageOfSongs = songRepository.findAllOfBundle(pageable, bundleid);
+        Page<Song> pageOfSongs = songRepository.findAllOfBundle(pageable, id);
         return pageOfSongs;
     }
-    
-    public Long getMaxSongId() {
-		return songRepository.getMaxSongId();
-	}
+
+    public Long getMaxId() {
+        return songRepository.getMaxId();
+    }
 }

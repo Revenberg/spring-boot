@@ -19,18 +19,18 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
     Page<Song> findAll(Pageable pageable);
 
-    @Query(value = "SELECT * FROM song s, bundle b where s.name=:name AND b.bundleid=:bundleid AND b.bundleid=s.fk_bundle ", nativeQuery = true)
-    Song findSongByNameInBundle(@Param("name") String name, @Param("bundleid") long bundleid);
+    @Query(value = "SELECT * FROM song s, bundle b where s.name=:name AND b.id=:id AND b.id=s.fk_bundle ", nativeQuery = true)
+    Song findSongByNameInBundle(@Param("name") String name, @Param("id") long id);
 
-    @Query(value = "SELECT COALESCE(max(songid), 0) FROM song s ", nativeQuery = true)
-    long getSongId();
+    @Query(value = "SELECT COALESCE(max(id), 0) FROM song s ", nativeQuery = true)
+    long getId();
 
-	@Query(value = "SELECT * FROM song s, bundle b where b.bundleid=:bundleid AND b.bundleid=s.fk_bundle ", nativeQuery = true)
-    Page<Song> findAllOfBundle(Pageable pageable, @Param("bundleid") long bundleid);
+    @Query(value = "SELECT * FROM song s, bundle b where b.id=:id AND b.id=s.fk_bundle ", nativeQuery = true)
+    Page<Song> findAllOfBundle(Pageable pageable, @Param("id") long id);
 
-	@Query(value = "SELECT * FROM song s, bundle b where b.id=:bundleid AND b.bundleid=s.fk_bundle ", nativeQuery = true)
-    List<Song> findAllByBundleid(@Param("bundleid") long bundleid);
+    @Query(value = "SELECT * FROM song s, bundle b where b.id=:id AND b.id=s.fk_bundle ", nativeQuery = true)
+    List<Song> findAllById(@Param("id") long id);
 
-    @Query(value = "SELECT COALESCE(max(songid), 0) FROM song s ", nativeQuery = true)
-    Long getMaxSongId();
+    @Query(value = "SELECT COALESCE(max(id), 0) FROM song s ", nativeQuery = true)
+    Long getMaxId();
 }

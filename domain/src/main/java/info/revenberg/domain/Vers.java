@@ -25,9 +25,6 @@ public class Vers extends AuditModel {
     private long id;
 
     @Column(nullable = false)
-    private long versid;
-
-    @Column(nullable = false)
     private int rank;
 
     @Column(nullable = false)
@@ -59,8 +56,8 @@ public class Vers extends AuditModel {
     public Vers() {
     }
 
-    public Vers(long songid, long versid, int rank, String title, String name, Song song) {
-        this.versid = versid;
+    public Vers(long id, int rank, String title, String name, Song song) {
+        this.id = id;
         this.rank = rank;
         this.title = title;
         this.name = name;
@@ -77,14 +74,6 @@ public class Vers extends AuditModel {
 
     public Song getSong() {
         return this.song;
-    }
-
-    public long getVersid() {
-        return versid;
-    }
-
-    public void setVersid(long versid) {
-        this.versid = versid;
     }
 
     public int getRank() {

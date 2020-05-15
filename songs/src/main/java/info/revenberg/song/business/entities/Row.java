@@ -23,25 +23,25 @@ import info.revenberg.domain.Vers;
 
 public class Row {
 
-    private Long versid = null;
-    private String  title = null;
-    
+    private Long id = null;
+    private String title = null;
+
     public Row() {
         super();
     }
 
     public Row(Vers vers) {
         super();
-        setVersid(vers.getId());
+        setId(vers.getId());
         setTitle(vers.getTitle());
     }
 
-    public Long getVersid() {
-        return this.versid;
+    public Long getId() {
+        return this.id;
     }
 
-    public void setVersid(Long versid) {
-        this.versid = versid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -54,10 +54,7 @@ public class Row {
 
     @Override
     public String toString() {
-        return "{" +
-            " versid='" + getVersid() + "'" +
-            ", title='" + getTitle() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", title='" + getTitle() + "'" + "}";
     }
-    
+
 }

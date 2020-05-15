@@ -16,15 +16,12 @@ import info.revenberg.domain.AuditModel;
 @Table(name = "bundle")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Bundle extends AuditModel {    
+public class Bundle extends AuditModel {
     private static final long serialVersionUID = -4206755717683730837L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bundle_sequence")
-    @GenericGenerator(name = "bundle_sequence", strategy = "native")    
+    @GenericGenerator(name = "bundle_sequence", strategy = "native")
     private long id;
-
-    @Column(nullable = false)
-    private long bundleid;
 
     @Column(nullable = false)
     private String name;
@@ -43,8 +40,8 @@ public class Bundle extends AuditModel {
         setName(name);
     }
 
-    public Bundle(long bundleid, String name, String mnemonic) {
-        setBundleid(bundleid);
+    public Bundle(long id, String name, String mnemonic) {
+        setId(id);
         setName(name);
         setMnemonic(mnemonic);
     }
@@ -65,14 +62,6 @@ public class Bundle extends AuditModel {
 
     public long getId() {
         return this.id;
-    }
-
-    public long getBundleid() {
-        return bundleid;
-    }
-
-    public void setBundleid(long bundleid) {
-        this.bundleid = bundleid;
     }
 
     public String getName() {

@@ -2,7 +2,7 @@ function getSongs(item)
 {
     document.getElementById("resultsBlockVerses").innerHTML = ""
 
-    var btn =  document.getElementById('bundleid');
+    var btn =  document.getElementById('id');
     btn.value = item.value;
 
     var url = '/songs/' + item.value;

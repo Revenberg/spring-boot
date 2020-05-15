@@ -17,15 +17,12 @@ import org.springframework.data.domain.Pageable;
 public class BundleService {
     @Autowired
     private BundleRepository bundleRepository;
-    
-    public BundleService() {    
+
+    public BundleService() {
     }
 
     public Bundle createBundle(Bundle bundle) {
-        if (bundle.getBundleid() == 0) {
-            bundle.setBundleid(this.getMaxBundleId() + 1);            
-        }
-        return bundleRepository.save(bundle);        
+        return bundleRepository.save(bundle);
     }
 
     public Optional<Bundle> getBundle(long id) {
@@ -65,9 +62,4 @@ public class BundleService {
 
         return bundleRepository.findBundleByMnemonic(mnemonic);
     }
-
-	public Long getMaxBundleId() {
-		return bundleRepository.getMaxBundleId();
-	}
-
 }

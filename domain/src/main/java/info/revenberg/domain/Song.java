@@ -27,9 +27,6 @@ public class Song extends AuditModel {
     private long id;
 
     @Column(nullable = false)
-    private long songid;
-
-    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -55,8 +52,8 @@ public class Song extends AuditModel {
     public Song() {
     }
 
-    public Song(long songid, String name, String source, Bundle bundle) {
-        this.songid = songid;
+    public Song(long id, String name, String source, Bundle bundle) {
+        this.id = id;
         this.name = name;
         this.source = source;
         setBundle(bundle);
@@ -64,10 +61,6 @@ public class Song extends AuditModel {
 
     public long getId() {
         return this.id;
-    }
-
-    public long getSongid() {
-        return songid;
     }
 
     public void setBundle(Bundle bundle) {
@@ -78,8 +71,8 @@ public class Song extends AuditModel {
         return this.bundle;
     }
 
-    public void setSongid(long songid) {
-        this.songid = songid;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

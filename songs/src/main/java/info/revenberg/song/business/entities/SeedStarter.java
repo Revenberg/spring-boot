@@ -30,7 +30,7 @@ public class SeedStarter {
 
     private String datePlanted1 = null;
     private Boolean covered = null;
-//    private MyType type = MyType.PLASTIC;
+    // private MyType type = MyType.PLASTIC;
     private String bundle = null;
     private String song = null;
 
@@ -39,7 +39,7 @@ public class SeedStarter {
 
     private List<Row> rows = new ArrayList<Row>();
 
-//    String[] multiCheckboxSelectedValues;
+    // String[] multiCheckboxSelectedValues;
 
     public SeedStarter() {
         super();
@@ -60,7 +60,7 @@ public class SeedStarter {
     public void setBundleid(final Long bundleid) {
         this.bundleid = bundleid;
     }
-    
+
     public Long getSongid() {
         return this.songid;
     }
@@ -69,7 +69,6 @@ public class SeedStarter {
         this.songid = songid;
     }
 
-    
     public String getVersesid() {
         return this.versesid;
     }
@@ -110,13 +109,13 @@ public class SeedStarter {
         this.covered = covered;
     }
 
-//    public MyType getType() {
-//        return this.type;
-//    }
+    // public MyType getType() {
+    // return this.type;
+    // }
 
-//    public void setType(final MyType type) {
-//        this.type = type;
-//    }
+    // public void setType(final MyType type) {
+    // this.type = type;
+    // }
 
     public String getVersesvalue() {
         System.out.println("???????????????????? getVersesvalue ????????????????????????????????????????????");
@@ -137,16 +136,11 @@ public class SeedStarter {
 
         String rc;
         if (versesvalue == null) {
-            rc = "SeedStarter [id=" + this.id 
-                + ", bundleid=" + this.bundleid 
-                + ", songid=" + this.songid 
-                + ", rows=" + this.rows + "]";
+            rc = "SeedStarter [id=" + this.id + ", bundleid=" + this.bundleid + ", songid=" + this.songid + ", rows="
+                    + this.rows + "]";
         } else {
-            rc = "SeedStarter [id=" + this.id 
-                + ", bundleid=" + this.bundleid 
-                + ", songid=" + this.songid 
-                + ", versesvalue=(" + this.versesvalue + ")" 
-                + ", rows=" + this.rows + "]";
+            rc = "SeedStarter [id=" + this.id + ", bundleid=" + this.bundleid + ", songid=" + this.songid
+                    + ", versesvalue=(" + this.versesvalue + ")" + ", rows=" + this.rows + "]";
         }
         return rc;
     }

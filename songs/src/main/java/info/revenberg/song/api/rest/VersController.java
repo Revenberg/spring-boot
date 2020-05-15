@@ -77,14 +77,14 @@ public class VersController extends AbstractRestHandler {
                 checkResourceFound(vers);
                 return vers.get();
         }
-        
+
         @RequestMapping(value = "/{id}/next", method = RequestMethod.GET, produces = { "application/json" })
         @ResponseStatus(HttpStatus.OK)
-        @ApiOperation(value = "Get a next versid", notes = "You have to provide a valid vers ID.")
-        public @ResponseBody Long getNextVersId(
+        @ApiOperation(value = "Get a next id", notes = "You have to provide a valid vers ID.")
+        public @ResponseBody Long getNextId(
                         @ApiParam(value = "The ID of the vers.", required = true) @PathVariable("id") Long id,
-                        HttpServletRequest request, HttpServletResponse response) throws Exception {                
-                return this.versService.getNextVersId(id);
+                        HttpServletRequest request, HttpServletResponse response) throws Exception {
+                return this.versService.getNextId(id);
         }
 
         @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {
@@ -130,38 +130,47 @@ public class VersController extends AbstractRestHandler {
         }
 
         /**
-        * Takes a BufferedImage and resizes it according to the provided targetSize
-        *
-        * @param src the source BufferedImage
-        * @param targetSize maximum height (if portrait) or width (if landscape)
-        * @return a resized version of the provided BufferedImage
-        */
-       private static BufferedImage resize(BufferedImage src, int targetSize) {
-           if (targetSize <= 0) {
-               return src; //this can't be resized
-           }
-           int targetWidth = targetSize;
-           int targetHeight = targetSize;
-           float ratio = ((float) src.getHeight() / (float) src.getWidth());
-           if (ratio <= 1) { //square or landscape-oriented image
-               targetHeight = (int) Math.ceil((float) targetWidth * ratio);
-           } else { //portrait image
-               targetWidth = Math.round((float) targetHeight / ratio);
-           }
-           BufferedImage bi = new BufferedImage(targetWidth, targetHeight, src.getTransparency() == Transparency.OPAQUE ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB);
-           Graphics2D g2d = bi.createGraphics();
-           g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR); //produces a balanced resizing (fast and decent quality)
-           g2d.drawImage(src, 0, 0, targetWidth, targetHeight, null);
-           g2d.dispose();
-           return bi;
-       }
+         * Takes a BufferedImage and resizes it according to the provided targetSize
+         *
+         * @param src        the source BufferedImage
+         * @param targetSize maximum height (if portrait) or width (if landscape)
+         * @return a resized version of the provided BufferedImage
+         */
+        private static BufferedImage resize(BufferedImage src, int targetSize) {
+                if (targetSize <= 0) {
+                        return src; // this can't be resized
+                }
+                int targetWidth = targetSize;
+                int targetHeight = targetSize;
+                float ratio = ((float) src.getHeight() / (float) src.getWidth());
+                if (ratio <= 1) { // square or landscape-oriented image
+                        targetHeight = (int) Math.ceil((float) targetWidth * ratio);
+                } else { // portrait image
+                        targetWidth = Math.round((float) targetHeight / ratio);
+                }
+                BufferedImage bi = new BufferedImage(targetWidth, targetHeight,
+                                src.getTransparency() == Transparency.OPAQUE ? BufferedImage.TYPE_INT_RGB
+                                                : BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = bi.createGraphics();
+                g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR); // produces
+                                                                                                                     // a
+                                                                                                                     // balanced
+                                                                                                                     // resizing
+                                                                                                                     // (fast
+                                                                                                                     // and
+                                                                                                                     // decent
+                                                                                                                     // quality)
+                g2d.drawImage(src, 0, 0, targetWidth, targetHeight, null);
+                g2d.dispose();
+                return bi;
+        }
 
         @RequestMapping(value = "/{id}/scalledimage", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
         @ResponseStatus(HttpStatus.OK)
         @ApiOperation(value = "Get scalled image")
         public @ResponseBody byte[] getScalledImage(
                         @ApiParam(value = "The ID of the existing vers resource.", required = true) @PathVariable("id") int id,
-                        @ApiParam(value = "The new  size", required = true) @RequestParam(value = "size", required = true) Integer  size)
+                        @ApiParam(value = "The new  size", required = true) @RequestParam(value = "size", required = true) Integer size)
                         throws SQLException, IOException {
                 checkResourceFound(this.versService.getVers(id));
                 Optional<Vers> vers = this.versService.getVers(id);
@@ -171,7 +180,7 @@ public class VersController extends AbstractRestHandler {
                 File file = new File(loc);
                 BufferedImage bufferimage = ImageIO.read(file);
                 BufferedImage img = resize(bufferimage, size);
-                
+
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
                 ImageIO.write(img, "jpg", output);
                 return output.toByteArray();

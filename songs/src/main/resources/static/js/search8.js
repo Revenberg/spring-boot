@@ -1,6 +1,6 @@
 function retrieveSongs(p) {
     document.getElementById("resultsBlockVerses").innerHTML = ""
-    var bbtn =  document.getElementById('bundleid');    
+    var bbtn =  document.getElementById('id');    
     bbtn.value = p;
 
     var url = '/songs/' + p;

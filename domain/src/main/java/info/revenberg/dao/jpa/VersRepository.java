@@ -16,15 +16,15 @@ public interface VersRepository extends JpaRepository<Vers, Long> {
 
     Page<Vers> findAll(Pageable pageable);
 
-    @Query(value = "SELECT * FROM vers v, song s where v.rank=:rank AND s.songid=:songid AND s.songid=v.fk_song", nativeQuery = true)
-    Vers findVersInSong(@Param("rank") int rank, @Param("songid") long songid);
+    @Query(value = "SELECT * FROM vers v, song s where v.rank=:rank AND s.id=:id AND s.id=v.fk_song", nativeQuery = true)
+    Vers findVersInSong(@Param("rank") int rank, @Param("id") long id);
 
-    @Query(value = "SELECT * FROM vers v, song s where s.songid=:songid AND s.songid=v.fk_song order by v.rank", nativeQuery = true)
-    List<Vers> findAllByVersid(@Param("songid") long songid);
+    @Query(value = "SELECT * FROM vers v, song s where s.id=:id AND s.id=v.fk_song order by v.rank", nativeQuery = true)
+    List<Vers> findAllById(@Param("id") long id);
 
-    @Query(value = "SELECT min(v.id) FROM vers v where v.id>:versid order by v.id", nativeQuery = true)
-    long findNextId(@Param("versid") long versid);
+    @Query(value = "SELECT min(v.id) FROM vers v where v.id>:id order by v.id", nativeQuery = true)
+    long findNextId(@Param("id") long id);
 
-    @Query(value = "SELECT COALESCE(max(versid), 0) FROM vers v ", nativeQuery = true)
-    Long getMaxVersId();
+    @Query(value = "SELECT COALESCE(max(id), 0) FROM vers v ", nativeQuery = true)
+    Long getMaxId();
 }

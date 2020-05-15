@@ -39,59 +39,58 @@ import info.revenberg.domain.Vers;
 
 @Controller
 public class SeedStarterMngController {
-    
+
     @Autowired
     private SeedStarterService seedStarterService;
 
-    private long songid;
+    private long id;
 
     public SeedStarterMngController() {
         super();
     }
 
-    @RequestMapping(value = "/songs/{bundleid}", method = RequestMethod.GET)
-    public String showSongsList(Model model, @PathVariable("bundleid") long bundleid) {
-        model.addAttribute("songs", this.seedStarterService.findAllSongs(bundleid));        
+    @RequestMapping(value = "/songs/{id}", method = RequestMethod.GET)
+    public String showSongsList(Model model, @PathVariable("id") long id) {
+        model.addAttribute("songs", this.seedStarterService.findAllSongs(id));
         model.addAttribute("versesvalue", null);
-        this.songid = -1;        
+        this.id = -1;
         return "seedstartermng :: resultsListSongs";
     }
 
-    @RequestMapping(value = "/verses/{songid}", method = RequestMethod.GET)
-    public String showVersesList(Model model, @PathVariable("songid") long songid) {
+    @RequestMapping(value = "/verses/{id}", method = RequestMethod.GET)
+    public String showVersesList(Model model, @PathVariable("id") long id) {
         System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
-        this.songid = songid;
-        List<Vers> verses = this.seedStarterService.findAllVerses(songid);
+        this.id = id;
+        List<Vers> verses = this.seedStarterService.findAllVerses(id);
         model.addAttribute("allVerses", verses);
-        
+
         return "seedstartermng :: resultsListVerses";
     }
 
     @ModelAttribute("allBundles")
     public List<Bundle> allBundles() {
-        System.out.println("!!!!!!!!!!!!! allBundles !!!!!!!!!!!!!!!!!");   
-        this.songid = -1;     
+        System.out.println("!!!!!!!!!!!!! allBundles !!!!!!!!!!!!!!!!!");
+        this.id = -1;
         return this.seedStarterService.findAllBundle();
     }
 
     @ModelAttribute("allSongs")
     public List<Song> allSongs() {
-        System.out.println("!!!!!!!!!!!!! allSongs !!!!!!!!!!!!!!!!!");        
-        return this.seedStarterService.findAllSongs(this.songid);
+        System.out.println("!!!!!!!!!!!!! allSongs !!!!!!!!!!!!!!!!!");
+        return this.seedStarterService.findAllSongs(this.id);
     }
-
 
     @ModelAttribute("allVerses")
     public List<Vers> allVerses(final SeedStarter seedStarter) {
         System.out.println("!!!!!!!!!!!!! allVerses !!!!!!!!!!!!!!!!!");
-//        List<Vers> verses = this.seedStarterService.findAllVerses(this.songid);
-  //      for (Vers vers : verses) {
-    //        seedStarter.getRows().add(new Row(vers));
-      //  }
-        //return verses;
+        // List<Vers> verses = this.seedStarterService.findAllVerses(this.id);
+        // for (Vers vers : verses) {
+        // seedStarter.getRows().add(new Row(vers));
+        // }
+        // return verses;
         return null;
     }
-    
+
     @RequestMapping({ "/", "/seedstartermng" })
     public String showSeedstarters0(final SeedStarter seedStarter, ModelMap model) {
         System.out.println("00000000000000000000000000000000");
@@ -102,7 +101,7 @@ public class SeedStarterMngController {
     @RequestMapping(value = "/seedstartermng", params = { "save" })
     public String saveSeedstarter(final SeedStarter seedStarter, final BindingResult bindingResult,
             final ModelMap model) {
-                System.out.println("222222222222222222222222222222222");
+        System.out.println("222222222222222222222222222222222");
         if (bindingResult.hasErrors()) {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!! 0 !!!!!!!!!!!!!!!!!!");
             return "seedstartermng";
@@ -112,24 +111,21 @@ public class SeedStarterMngController {
         System.out.println("!!!!!!!!!!!!! 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(seedStarter.toString());
         System.out.println("!!!!!!!!!!!!!!!! 3 !!!!!!!!!!!!!!!!!!!!!!!!");
-        //this.seedStarterService.add(seedStarter);
+        // this.seedStarterService.add(seedStarter);
         model.clear();
         return "redirect:/seedstartermng";
     }
-/*
-    @RequestMapping(value = "/seedstartermng", params = { "addRow" })
-    public String addRow(final SeedStarter seedStarter, final BindingResult bindingResult) {
-        //seedStarter.getRows().add(new Row());
-        return "seedstartermng";
-    }
-    */
-/*
-    @RequestMapping(value = "/seedstartermng", params = { "removeRow" })
-    public String removeRow(final SeedStarter seedStarter, final BindingResult bindingResult,
-            final HttpServletRequest req) {
-        final Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
-        seedStarter.getRows().remove(rowId.intValue());
-        return "seedstartermng";
-    }
-*/
+    /*
+     * @RequestMapping(value = "/seedstartermng", params = { "addRow" }) public
+     * String addRow(final SeedStarter seedStarter, final BindingResult
+     * bindingResult) { //seedStarter.getRows().add(new Row()); return
+     * "seedstartermng"; }
+     */
+    /*
+     * @RequestMapping(value = "/seedstartermng", params = { "removeRow" }) public
+     * String removeRow(final SeedStarter seedStarter, final BindingResult
+     * bindingResult, final HttpServletRequest req) { final Integer rowId =
+     * Integer.valueOf(req.getParameter("removeRow"));
+     * seedStarter.getRows().remove(rowId.intValue()); return "seedstartermng"; }
+     */
 }

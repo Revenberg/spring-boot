@@ -22,10 +22,10 @@ import java.util.Optional;
 @Controller
 @RequestMapping(value = "song")
 public class SongWebController {
- 
+
     @Autowired
     private SongRepository songRepository;
-    
+
     @Autowired
     private SongService songService;
 
@@ -37,37 +37,34 @@ public class SongWebController {
         model.addAttribute("songs", songRepository.findAll());
         return "song-list";
     }
-    
-    @GetMapping("{bundleid}")
+
+    @GetMapping("{id}")
     public String getSongsOfBundle(
-        @ApiParam(value = "The BundleId of the bundle.", required = true) @PathVariable("bundleid") Long bundleid,
-        Model model) {
-        Optional<Bundle> bundle = bundleService.getBundle(bundleid);
+            @ApiParam(value = "The id of the bundle.", required = true) @PathVariable("id") Long id, Model model) {
+        Optional<Bundle> bundle = bundleService.getBundle(id);
         if (bundle != null) {
-                model.addAttribute("bundle", bundle.get());
+            model.addAttribute("bundle", bundle.get());
         }
-        model.addAttribute("songs", songRepository.findAllByBundleid(bundleid));
+        model.addAttribute("songs", songRepository.findAllById(id));
         return "song-list";
     }
 
     @GetMapping("/edit/{id}")
-    public String showSignUpForm(
-        @ApiParam(value = "The ID of the song.", required = true) @PathVariable("id") Long id,
-        Model model            
-        ) {
-            Optional<Song> song = this.songService.getSong(id);
-            model.addAttribute("song", song);
+    public String showSignUpForm(@ApiParam(value = "The ID of the song.", required = true) @PathVariable("id") Long id,
+            Model model) {
+        Optional<Song> song = this.songService.getSong(id);
+        model.addAttribute("song", song);
         return "song-edit";
     }
-     
+
     @PostMapping("/add")
     public String addSong(@Valid Song song, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "song-add";
-        }         
-        
-        songRepository.save(song);        
+        }
+
+        songRepository.save(song);
         model.addAttribute("songs", songRepository.findAll());
         return "index";
     }
- }
+}
