@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Proxy;
+
 import info.revenberg.domain.AuditModel;
 
 /*
@@ -14,6 +16,7 @@ import info.revenberg.domain.AuditModel;
  */
 @Entity
 @Table(name = "bundle")
+@Proxy(lazy = false)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Bundle extends AuditModel {
