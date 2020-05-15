@@ -40,7 +40,7 @@ public class Vers extends AuditModel {
     private int versLines;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "fk_song", referencedColumnName = "songid")
+    @JoinColumn(name = "fk_song", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Song song;
 

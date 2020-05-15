@@ -12,10 +12,9 @@ import info.revenberg.domain.AuditModel;
 @Table(name = "line")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Line extends AuditModel  {
+public class Line extends AuditModel {
     private static final long serialVersionUID = -8627990442911682692L;
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "line_sequence")
     @GenericGenerator(name = "line_sequence", strategy = "native")
@@ -35,7 +34,7 @@ public class Line extends AuditModel  {
     double MaxX;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "fk_vers", referencedColumnName = "versid")
+    @JoinColumn(name = "fk_vers", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonBackReference
     private Vers vers;
@@ -43,8 +42,7 @@ public class Line extends AuditModel  {
     public Line() {
     }
 
-    public Line(int rank, String text, String location,
-            double minY, double MaxY, double minX, double MaxX, Vers vers) {
+    public Line(int rank, String text, String location, double minY, double MaxY, double minX, double MaxX, Vers vers) {
         this.rank = rank;
         this.text = text;
         this.minY = minY;

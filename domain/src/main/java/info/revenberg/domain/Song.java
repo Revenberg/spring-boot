@@ -36,7 +36,7 @@ public class Song extends AuditModel {
     private String source;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "fk_bundle", referencedColumnName = "bundleid")
+    @JoinColumn(name = "fk_bundle", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Bundle bundle;
 
