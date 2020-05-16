@@ -15,7 +15,7 @@ import info.revenberg.domain.AuditModel;
  * a simple domain entity doubling as a DTO
  */
 @Entity
-@Table(name = "bundle")
+@Table(name = "bundle", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "mnemonic" }))
 @Proxy(lazy = false)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -29,7 +29,7 @@ public class Bundle extends AuditModel {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column()
+    @Column(nullable = false, unique = true)
     private String mnemonic;
 
     @OneToMany(mappedBy = "bundle", cascade = CascadeType.ALL, orphanRemoval = true)
