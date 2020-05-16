@@ -29,7 +29,7 @@ public class Song extends AuditModel {
     @GenericGenerator(name = "song_sequence", strategy = "native")
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)

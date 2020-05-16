@@ -26,7 +26,7 @@ public class Bundle extends AuditModel {
     @GenericGenerator(name = "bundle_sequence", strategy = "native")
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column()
