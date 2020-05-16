@@ -15,7 +15,7 @@ import org.hibernate.annotations.Proxy;
 import info.revenberg.domain.AuditModel;
 
 @Entity
-@Table(name = "song", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
+@Table(name = "song")
 @Proxy(lazy = false)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)

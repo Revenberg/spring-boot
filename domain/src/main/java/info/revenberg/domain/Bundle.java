@@ -15,7 +15,7 @@ import info.revenberg.domain.AuditModel;
  * a simple domain entity doubling as a DTO
  */
 @Entity
-@Table(name = "bundle", uniqueConstraints = @UniqueConstraint(columnNames = { "name", "mnemonic" }))
+@Table(name = "bundle")
 @Proxy(lazy = false)
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
