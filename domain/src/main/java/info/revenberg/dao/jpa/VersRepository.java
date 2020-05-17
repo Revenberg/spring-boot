@@ -22,8 +22,8 @@ public interface VersRepository extends JpaRepository<Vers, Long> {
     @Query(value = "SELECT * FROM vers v, song s where s.id=:id AND s.id=v.fk_song order by v.rank", nativeQuery = true)
     List<Vers> findAllById(@Param("id") long id);
 
-    @Query(value = "SELECT COALESCE(min(v.id), 0) FROM vers v where v.id>:id group by v.id", nativeQuery = true)
-    long findNextId(@Param("id") long id);
+    @Query(value = "SELECT min(v.id) FROM vers v where v.id>:id ", nativeQuery = true)
+    Long findNextId(@Param("id") long id);
 
     @Query(value = "SELECT COALESCE(max(id), 0) FROM vers v ", nativeQuery = true)
     Long getMaxId();
