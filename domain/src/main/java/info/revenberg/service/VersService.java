@@ -29,6 +29,10 @@ public class VersService {
     }
 
     public Long getNextId(long id) {
+        System.out.println("!!!!!!! VersService !!!!!!!!!");
+        System.out.println(versRepository.findNextId(id));
+        System.out.println("!!! VersService !!!!!!!!!!!!!");
+
         return versRepository.findNextId(id);
     }
 

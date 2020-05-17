@@ -84,6 +84,9 @@ public class VersController extends AbstractRestHandler {
         public @ResponseBody Long getNextId(
                         @ApiParam(value = "The ID of the vers.", required = true) @PathVariable("id") Long id,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
+                System.out.println("!!!!!!! getNextId !!!!!!!!!");
+                System.out.println(this.versService.getNextId(id));
+                System.out.println("!!!!!!!! getNextId !!!!!!!!");
                 return this.versService.getNextId(id);
         }
 
