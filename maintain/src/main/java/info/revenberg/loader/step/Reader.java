@@ -17,6 +17,9 @@ public class Reader implements ItemReader<Vers> {
 	@Override
 	public synchronized Vers read()
 			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+		if lastID > 0 {
+			return null;
+		}
 		System.out.println(Long.toString(lastID) + "synchronized !!!!!!!!!!!!!!!! a !!!!!!!!!!!");
 
 		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
@@ -37,7 +40,7 @@ public class Reader implements ItemReader<Vers> {
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b0 !!!!!!!!!!!");
 		System.out.println(uri);
 		Vers vers = restTemplate.getForObject(uri, Vers.class);
-		// System.out.println(vers);
+		System.out.println(vers);
 		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b1 !!!!!!!!!!!");
 		TimeUnit.SECONDS.sleep(15);
 		return vers;
