@@ -93,11 +93,6 @@
             <version>1.1</version>
         </dependency>
 
-        <!-- web development, including Tomcat and spring-webmvc -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <!-- Spring security -->
         <!--
             <dependency>
@@ -204,10 +199,10 @@
             <version>5.3.14.Final</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search</artifactId>
+            <artifactId>hibernate-search-orm</artifactId>
             <version>5.11.4.Final</version>
             <type>pom</type>
         </dependency>
