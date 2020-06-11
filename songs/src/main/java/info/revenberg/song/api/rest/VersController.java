@@ -6,9 +6,11 @@ import java.awt.image.BufferedImage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-
+import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;
+import info.revenberg.domain.line.FindLinesInImage;
 import info.revenberg.exception.DataFormatException;
+import info.revenberg.service.LineService;
 import info.revenberg.service.VersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.Optional;
 
 import java.awt.Transparency;
@@ -30,6 +33,8 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import info.revenberg.domain.line.ImageDefinition;
+
 @RestController
 @RequestMapping(value = "/rest/v1/vers")
 @Api(tags = { "vers" })
@@ -38,6 +43,9 @@ public class VersController extends AbstractRestHandler {
         @Autowired
         private VersService versService;
 
+        @Autowired
+        private LineService lineService;
+        
         @RequestMapping(value = "", method = RequestMethod.POST, consumes = { "application/json" }, produces = {
                         "application/json" })
         @ResponseStatus(HttpStatus.CREATED)
@@ -81,10 +89,38 @@ public class VersController extends AbstractRestHandler {
         @RequestMapping(value = "/{id}/next", method = RequestMethod.GET, produces = { "application/json" })
         @ResponseStatus(HttpStatus.OK)
         @ApiOperation(value = "Get a next id", notes = "You have to provide a valid vers ID.")
-        public @ResponseBody Long getNextId(
+        public @ResponseBody Vers getNextId(
                         @ApiParam(value = "The ID of the vers.", required = true) @PathVariable("id") Long id,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
-                return this.versService.getNextId(id);
+                Optional<Vers> oVers = this.versService.getVers(this.versService.getNextId(id));                
+                checkResourceFound(oVers);                
+                if (oVers.isPresent()) {
+                        Vers vers =oVers.get();
+                        String mediaTempLocation = "/var/songs/temp";
+                        FindLinesInImage images = new FindLinesInImage(vers.getLocation(), mediaTempLocation + "/vers", vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
+
+                
+                        for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions().entrySet()) {
+                                ImageDefinition imageDefinition = entry.getValue();
+                
+                                Line line = new Line();
+                                line.setText(imageDefinition.getFilename());
+                                line.setRank(entry.getKey() + 1);
+                                line.setLocation(imageDefinition.getFilename());
+                                line.setVers(vers);
+                                line.setLocation(imageDefinition.getFilename());
+                                System.out.println("@@@@@@@@@@@@@@@@@@@@ a @@@@@@@@@@@@@@@@@@@@@");
+                                System.out.println(imageDefinition.getFilename());
+                                System.out.println(line);
+                
+                                Line createdLine = this.lineService.createLine(line);
+                
+                                System.out.println(imageDefinition.getTitle());
+                                System.out.println("@@@@@@@@@@@@@@@@@@@@ c @@@@@@@@@@@@@@@@@@@@@");
+                        }
+                        return vers;
+                }
+                return null;
         }
 
         @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {
