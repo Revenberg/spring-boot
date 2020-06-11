@@ -39,7 +39,7 @@ public class BatchConfig {
 	@Scheduled(cron = "0/1 * * * * ?")
     @Bean
     public Job job() {
-        return jobBuilderFactory.get("job")
+		return jobBuilderFactory.get("job")				
                 .incrementer(new RunIdIncrementer())
                 .flow(step1())
                 .end()
