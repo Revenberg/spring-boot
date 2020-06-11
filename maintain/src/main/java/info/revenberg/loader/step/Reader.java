@@ -17,7 +17,7 @@ public class Reader implements ItemReader<Vers> {
 	@Override
 	public synchronized Vers read()
 			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-		if lastID > 0 {
+		if (lastID > 0) {
 			return null;
 		}
 		System.out.println(Long.toString(lastID) + "synchronized !!!!!!!!!!!!!!!! a !!!!!!!!!!!");
