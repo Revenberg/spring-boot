@@ -39,7 +39,7 @@ public class Reader implements ItemReader<Long> {
 				
 				
 				try {					
-					List<JobInstance> jobInstances = jobExplorer.getJobInstances("processJob",0,100);// this will get one latest job from the database
+					List<JobInstance> jobInstances = jobExplorer.getJobInstances("job",0,100);// this will get one latest job from the database
 					if(CollectionUtils.isNotEmpty(jobInstances)){						
 					   JobInstance jobInstance =  jobInstances.get(0);
 					   System.out.println(jobInstance);					
