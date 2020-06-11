@@ -7,8 +7,11 @@ import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.ExitStatus;
@@ -36,9 +39,16 @@ public class Reader implements ItemReader<Long> {
 	@Override
 	public synchronized Long read()
 			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {	
-				
-				
-				try {					
+				try {			
+					
+					List<JobExecution> runningJobInstances = new ArrayList<JobExecution>();
+					List<String> jobNames = jobExplorer.getJobNames();
+					for (String jobName : jobNames) {
+					Set<JobExecution> jobExecutions
+							= jobExplorer.findRunningJobExecutions(jobName);
+					runningJobInstances.addAll(jobExecutions);
+					}
+
 					List<JobInstance> jobInstances = jobExplorer.getJobInstances("job",0,100);// this will get one latest job from the database
 					if(CollectionUtils.isNotEmpty(jobInstances)){						
 					   JobInstance jobInstance =  jobInstances.get(0);
