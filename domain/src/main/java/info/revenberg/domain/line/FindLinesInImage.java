@@ -40,8 +40,9 @@ public class FindLinesInImage {
         File f = new File(filename);
         String title = f.getName().replace("." + FilenameUtils.getExtension(filename), "");
 
-        URL url = new URL(filename);
-        image = ImageIO.read(url);
+        //URL url = new URL(filename);
+        //image = ImageIO.read(filename);
+        image = ImageIO.read(new File("/Users/al/some-picture.jpg"));        
 
         int lineRgb = Color.BLACK.getRGB();
         Map<Double, Line2D> lines2a = new TreeMap<Double, Line2D>();

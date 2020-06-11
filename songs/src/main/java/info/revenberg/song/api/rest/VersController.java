@@ -113,7 +113,7 @@ public class VersController extends AbstractRestHandler {
                                 System.out.println(imageDefinition.getFilename());
                                 System.out.println(line);
                 
-                                Line createdLine = this.lineService.createLine(line);
+                                this.lineService.createLine(line);
                 
                                 System.out.println(imageDefinition.getTitle());
                                 System.out.println("@@@@@@@@@@@@@@@@@@@@ c @@@@@@@@@@@@@@@@@@@@@");
