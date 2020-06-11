@@ -90,6 +90,9 @@ public class Writer implements ItemWriter<DataObject> {
 
     @Override
     public void write(List<? extends DataObject> dataObjects) throws Exception {
+    }
+
+    public void write1(List<? extends DataObject> dataObjects) throws Exception {
 
         SendLine sendLine = new SendLine();
         for (DataObject dataObject : dataObjects) {

@@ -11,13 +11,17 @@ import info.revenberg.loader.objects.DataObject;
 
 import java.util.Map;
 
-public class Processor implements ItemProcessor<Vers, DataObject> {
+public class Processor implements ItemProcessor<Long, DataObject> {
 
     @Value("${media.temp}")
     private String mediaTempLocation;
 
     @Override
-    public synchronized DataObject process(final Vers vers) throws Exception {
+    public synchronized DataObject process(final Long l) throws Exception {
+        return null;
+    }
+
+    public synchronized DataObject process1(final Vers vers) throws Exception {
         System.out.println("process start");
         System.out.println(vers);
 
