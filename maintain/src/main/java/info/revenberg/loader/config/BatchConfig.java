@@ -64,7 +64,7 @@ public class BatchConfig {
 @Bean
 	public Step step1() {
 		return stepBuilderFactory.get("step1")
-				.<Vers, DataObject > chunk(1)
+				.<Long, DataObject > chunk(1)
 				.reader(new Reader())							
 				//.processor(new Processor())
 				//.writer(new Writer())

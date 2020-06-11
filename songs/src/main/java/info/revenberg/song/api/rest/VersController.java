@@ -89,7 +89,7 @@ public class VersController extends AbstractRestHandler {
         @RequestMapping(value = "/{id}/next", method = RequestMethod.GET, produces = { "application/json" })
         @ResponseStatus(HttpStatus.OK)
         @ApiOperation(value = "Get a next id", notes = "You have to provide a valid vers ID.")
-        public @ResponseBody Vers getNextId(
+        public @ResponseBody Long getNextId(
                         @ApiParam(value = "The ID of the vers.", required = true) @PathVariable("id") Long id,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
                 Optional<Vers> oVers = this.versService.getVers(this.versService.getNextId(id));                
@@ -112,9 +112,9 @@ public class VersController extends AbstractRestHandler {
                                 
                                 this.lineService.createLine(line);                                                
                         }
-                        return vers;
+                        return vers.getId();
                 }
-                return null;
+                return 0L;
         }
 
         @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = { "application/json" }, produces = {

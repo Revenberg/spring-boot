@@ -8,14 +8,12 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.web.client.RestTemplate;
 
-import info.revenberg.domain.Vers;
-
-public class Reader implements ItemReader<Vers> {
+public class Reader implements ItemReader<Long> {
 
 	private static Long lastID = 0L;
 
 	@Override
-	public synchronized Vers read()
+	public synchronized Long read()
 			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 		if (lastID > 0) {
 			return null;
@@ -35,15 +33,8 @@ public class Reader implements ItemReader<Vers> {
 			return read();
 		}
 		lastID = id;
-
-		uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(id);
-		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b0 !!!!!!!!!!!");
-		System.out.println(uri);
-		Vers vers = restTemplate.getForObject(uri, Vers.class);
-		System.out.println(vers);
-		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!!!!! b1 !!!!!!!!!!!");
-		TimeUnit.SECONDS.sleep(15);
-		return vers;
+		
+		return lastID;
 
 		/*
 		 * RestResponsePage pages = restTemplate.getForObject(uri,
