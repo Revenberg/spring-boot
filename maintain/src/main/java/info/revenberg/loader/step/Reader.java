@@ -12,10 +12,7 @@ public class Reader implements ItemReader<Long> {
 
 	@Override
 	public synchronized Long read()
-			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-		if (lastID > 0) {
-			return null;
-		}
+			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {		
 		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
 		RestTemplate restTemplate = new RestTemplate();
