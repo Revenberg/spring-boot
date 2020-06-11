@@ -38,10 +38,8 @@ public class Reader implements ItemReader<Long> {
 			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {	
 				
 				
-				try {
-					System.out.println(jobExplorer.getJobNames());
-
-					List<JobInstance> jobInstances = jobExplorer.getJobInstances("jobName",0,1);// this will get one latest job from the database
+				try {					
+					List<JobInstance> jobInstances = jobExplorer.getJobInstances("processJob",0,100);// this will get one latest job from the database
 					if(CollectionUtils.isNotEmpty(jobInstances)){						
 					   JobInstance jobInstance =  jobInstances.get(0);
 					   System.out.println(jobInstance);					
