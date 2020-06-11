@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import info.revenberg.domain.Line;
 import info.revenberg.domain.Vers;
@@ -35,6 +36,16 @@ public class BatchConfig {
 	@Autowired
 	public StepBuilderFactory stepBuilderFactory;
 
+	@Scheduled(cron = "0/1 * * * * ?")
+    @Bean
+    public Job job() {
+        return jobBuilderFactory.get("job")
+                .incrementer(new RunIdIncrementer())
+                .flow(step1())
+                .end()
+                .build();
+	}
+
 	@Bean
 	public Job processJob() {
 		return jobBuilderFactory.get("processJob")
@@ -55,8 +66,8 @@ public class BatchConfig {
 		return stepBuilderFactory.get("step1")
 				.<Vers, DataObject > chunk(1)
 				.reader(new Reader())							
-				.processor(new Processor())
-				.writer(new Writer())
+				//.processor(new Processor())
+				//.writer(new Writer())
 				.taskExecutor(taskExecutor())
 				.allowStartIfComplete(true)
 				.startLimit(1)
