@@ -25,7 +25,7 @@ public class Reader implements ItemReader<Long> {
 		RestTemplate restTemplate = new RestTemplate();
 
 		Long id = restTemplate.getForObject(uri, Long.class);
-		// System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
+		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
 		if (id == null) {
 			return null;
 		}
