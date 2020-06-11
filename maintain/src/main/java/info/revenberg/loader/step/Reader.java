@@ -1,7 +1,5 @@
 package info.revenberg.loader.step;
 
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
