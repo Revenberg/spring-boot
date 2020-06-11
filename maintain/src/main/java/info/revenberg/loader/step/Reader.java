@@ -18,20 +18,19 @@ public class Reader implements ItemReader<Long> {
 		if (lastID > 0) {
 			return null;
 		}
-		System.out.println(Long.toString(lastID) + "synchronized !!!!!!!!!!!!!!!! a !!!!!!!!!!!");
-
 		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
 		RestTemplate restTemplate = new RestTemplate();
 
 		Long id = restTemplate.getForObject(uri, Long.class);
-		System.out.println(Long.toString(lastID) + "!!!!!!!!!!!!! a !!!!!!!!!!!!!!");
 		if (id == null) {
 			return null;
 		}
 		if (lastID == id) {
 			return read();
 		}
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		System.out.println(Long.toString(id));
 		lastID = id;
 		
 		return lastID;
