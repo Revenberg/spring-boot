@@ -96,9 +96,8 @@ public class VersController extends AbstractRestHandler {
                 checkResourceFound(oVers);                
                 if (oVers.isPresent()) {
                         Vers vers =oVers.get();
-                        String mediaTempLocation = "/var/songs/temp";
+                        String mediaTempLocation = "/var/songs/media";
                         FindLinesInImage images = new FindLinesInImage(vers.getLocation(), mediaTempLocation + "/vers", vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
-
                 
                         for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions().entrySet()) {
                                 ImageDefinition imageDefinition = entry.getValue();
