@@ -7,7 +7,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -19,8 +18,7 @@ public class Reader implements ItemReader<Long> {
 
 	@Override
 	public synchronized Long read() {
-		System.out.println(System.getProperty("logfile.path"));
-		String directory = System.getProperty("logfile.path");
+		String directory = "/var/songs";
 		String fileName = "maintain.next";
 		String absolutePath = directory + File.separator + fileName;
 
