@@ -1,83 +1,45 @@
 package info.revenberg.loader.step;
 
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.NonTransientResourceException;
-import org.springframework.batch.item.ParseException;
-import org.springframework.batch.item.UnexpectedInputException;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.batch.core.BatchStatus;
-import org.springframework.batch.core.ExitStatus;
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobInstance;
-import org.springframework.batch.core.explore.JobExplorer;
-import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.batch.core.launch.JobOperator;
-import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Reader implements ItemReader<Long> {
 
-	@Autowired
-    private JobExplorer jobExplorer;
-    @Autowired
-    JobRepository jobRepository;
-    //@Autowired
-    //private JobLauncher jobLauncher;
-    @Autowired 
-	JobOperator jobOperator;
-	
 	private static Long lastID = 0L;
 
 	@Override
-	public synchronized Long read()
-			throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {	
-				try {			
-					
-					List<JobExecution> runningJobInstances = new ArrayList<JobExecution>();
-					List<String> jobNames = jobExplorer.getJobNames();
-					for (String jobName : jobNames) {
-					Set<JobExecution> jobExecutions
-							= jobExplorer.findRunningJobExecutions(jobName);
-					runningJobInstances.addAll(jobExecutions);
-					}
+	public synchronized Long read() {
+		System.out.println(System.getProperty("logfile.path"));
+		String directory = System.getProperty("logfile.path");
+		String fileName = "maintain.next";
+		String absolutePath = directory + File.separator + fileName;
 
-					List<JobInstance> jobInstances = jobExplorer.getJobInstances("job",0,100);// this will get one latest job from the database
-					if(CollectionUtils.isNotEmpty(jobInstances)){						
-					   JobInstance jobInstance =  jobInstances.get(0);
-					   System.out.println(jobInstance);					
-					   List<JobExecution> jobExecutions = jobExplorer.getJobExecutions(jobInstance);
-					   if(CollectionUtils.isNotEmpty(jobExecutions)){
-						   for(JobExecution execution: jobExecutions){
-							   // If the job status is STARTED then update the status to FAILED and restart the job using JobOperator.java
-							   if(execution.getStatus().equals(BatchStatus.STARTED)){ 
-								System.out.println(execution);					
-								   execution.setEndTime(new Date());
-								   execution.setStatus(BatchStatus.FAILED);                               
-								   execution.setExitStatus(ExitStatus.FAILED);                               
-								   jobRepository.update(execution);
-								   jobOperator.restart(execution.getId());
-							   }
-						   }
-					   }
-					}
-				} catch (Exception e1) {
-					e1.printStackTrace();
+		if (lastID == 0L) {
+			// Read the content from file
+			try (BufferedReader bufferedReader = new BufferedReader(new FileReader(absolutePath))) {
+				String line = bufferedReader.readLine();
+				while (line != null) {
+					System.out.println(line);
+					lastID = Long.valueOf(line);
+					line = bufferedReader.readLine();
 				}
+			} catch (FileNotFoundException e) {
+				// Exception handling
+			} catch (IOException e) {
+				// Exception handling
+			}
+		}
 
-
-
-
-
-				
-				
 		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
 		RestTemplate restTemplate = new RestTemplate();
@@ -91,8 +53,16 @@ public class Reader implements ItemReader<Long> {
 		}
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		System.out.println(Long.toString(id));
+
+		// Write the content in file
+		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(absolutePath))) {
+			bufferedWriter.write(Long.toString(lastID));
+		} catch (IOException e) {
+			// Exception handling
+		}
+
 		lastID = id;
-		
+
 		return lastID;
 
 		/*
