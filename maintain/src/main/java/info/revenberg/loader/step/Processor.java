@@ -37,7 +37,7 @@ public class Processor implements ItemProcessor<Long, DataObject> {
             // System.out.println(uri);
 
             // mediaLocation = "D:/Songs/temp";
-            mediaTempLocation = "/var/songs/temp";
+            mediaTempLocation = "/var/songs/media";
             FindLinesInImage images = new FindLinesInImage(uri, mediaTempLocation + "/vers",
                     vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
 
