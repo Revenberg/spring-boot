@@ -21,6 +21,7 @@ public class Reader implements ItemReader<Long> {
 		String directory = "/var/songs";
 		String fileName = "maintain.next";
 		String absolutePath = directory + File.separator + fileName;
+		Long id = 0L;
 
 		if (lastID == 0L) {
 			// Read the content from file
@@ -38,27 +39,26 @@ public class Reader implements ItemReader<Long> {
 			}
 		}
 
-		String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
+		try {
+			String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
-		RestTemplate restTemplate = new RestTemplate();
+			RestTemplate restTemplate = new RestTemplate();
+			id = restTemplate.getForObject(uri, Long.class);
 
-		Long id = restTemplate.getForObject(uri, Long.class);
-		if (id == null) {
-			return null;
+		} catch (Exception e) {
+			// Exception handling
+			System.out.println(e.getMessage());
+			id = lastID + 1;
 		}
-		if (lastID == id) {
-			return read();
-		}
+
 		// Write the content in file
 		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(absolutePath))) {
 			bufferedWriter.write(Long.toString(lastID));
 		} catch (IOException e) {
 			// Exception handling
-		}
+		}		
 
-		lastID = id;
-
-		return lastID;
+		return id;
 
 	}
 

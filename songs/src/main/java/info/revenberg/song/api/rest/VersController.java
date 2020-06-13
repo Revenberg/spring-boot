@@ -116,6 +116,7 @@ public class VersController extends AbstractRestHandler {
                                         this.lineService.createLine(line);
                                 }
                         } catch (Exception e) {
+                                throw new DataFormatException("Failing creating files");
                         }
                         return vers.getId();
                 }
