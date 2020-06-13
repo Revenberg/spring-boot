@@ -101,6 +101,14 @@ public class LineController extends AbstractRestHandler {
                 checkResourceFound(this.lineService.getLine(id));
                 this.lineService.deleteLine(id);
         }
+        @RequestMapping(value = "", method = RequestMethod.DELETE, produces = { "application/json" })
+        @ResponseStatus(HttpStatus.NO_CONTENT)
+        @ApiOperation(value = "Delete all line resources.", notes = "")
+        public void deleteAllLines(                        
+                        HttpServletRequest request, HttpServletResponse response) {                
+                this.lineService.deleteAll();
+        }       
+
 
         @RequestMapping(value = "/{id}/image", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
         @ResponseStatus(HttpStatus.OK)
