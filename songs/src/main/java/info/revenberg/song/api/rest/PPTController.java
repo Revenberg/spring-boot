@@ -141,60 +141,7 @@ public class PPTController {
 					vers.setTitle(versName);
 					vers.setLocation(tFile.getAbsolutePath());
 					this.versService.createVers(vers);
-					rank++;
-					/*
-					 * String[] s1 = temp.split("/"); String versName = s1[s1.length - 1]; String[]
-					 * s2 = versName.split("\\."); String ext = s2[s2.length - 1]; versName =
-					 * versName.replace("." + ext, "").replace("image", ""); versName =
-					 * Integer.toString((Integer.parseInt(versName) - 1));
-					 * 
-					 * System.out.println(versName); // TempFile fileInfo = new TempFile(tFile);
-					 * 
-					 * System.out.
-					 * println("!!!!!!!!!!!!!!!!!!! 1 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					 * vers = new Vers(); // String[] tokens = fileInfo.getName().split("."); //
-					 * String versName = tokens[tokens.length - 2];
-					 * 
-					 * System.out.
-					 * println("!!!!!!!!!!!!!!!!!!!!!!!!!!!! 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					 * vers.setName(versName); vers.setSong(song); vers.setRank(rank); System.out.
-					 * println("!!!!!!!!!!!!!!!!!!!!!! 3 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					 * rank++; vers.setTitle(versName); System.out.
-					 * println("!!!!!!!!!!!!!!!!!!!!!!!!!! 4 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					 * this.versService.createVers(vers); System.out.
-					 * println("!!!!!!!!!!!!!!!!!!!!!!!! 5 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					 * 
-					 * System.out.
-					 * println("!!!!!!!!!!!!!!!!!!! vers !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					 * System.out.println(vers); System.out.println(
-					 * "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-					 * 
-					 * FindLinesInImage result = new FindLinesInImage(temp, mediaLocation,
-					 * bundleName, songName); // result1.createIMG(1, 3, "41_gezangen.Gz_001");
-					 * 
-					 * Map<Integer, ImageDefinition> ids = result.getImageDefinitions();
-					 * 
-					 * System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-					 * System.out.println(ids.size());
-					 * System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-					 * for (int j = 0; j < ids.size(); j++) { System.out.
-					 * println("########### ids #############################################");
-					 * System.out.println(j);
-					 * System.out.println("########################################################"
-					 * ); ImageDefinition id = ids.get((Integer) j);
-					 * System.out.println(id.getFilename()); System.out.println(">>>>>>>>>>>>>>>>>>"
-					 * + songName + " " + id.getTitle() + "<<<");
-					 * 
-					 * Line line = new Line(j, songName + " " + id.getTitle(), id.getFilename(),
-					 * id.getminY(), id.getMaxY(), id.getminX(), id.getMaxX(), vers);
-					 * 
-					 * line = this.lineService.createLine(line);
-					 * System.out.println("########################################################"
-					 * ); System.out.println(line);
-					 * System.out.println("########################################################"
-					 * ); } t2.add(result);
-					 * 
-					 */
+					rank++;				
 
 				}
 			}
