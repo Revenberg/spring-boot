@@ -45,7 +45,7 @@ public class VersController extends AbstractRestHandler {
 
         @Autowired
         private LineService lineService;
-        
+
         @RequestMapping(value = "", method = RequestMethod.POST, consumes = { "application/json" }, produces = {
                         "application/json" })
         @ResponseStatus(HttpStatus.CREATED)
@@ -92,24 +92,30 @@ public class VersController extends AbstractRestHandler {
         public @ResponseBody Long getNextId(
                         @ApiParam(value = "The ID of the vers.", required = true) @PathVariable("id") Long id,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
-                Optional<Vers> oVers = this.versService.getVers(this.versService.getNextId(id));                
-                checkResourceFound(oVers);                
+                Optional<Vers> oVers = this.versService.getVers(this.versService.getNextId(id));
+                checkResourceFound(oVers);
                 if (oVers.isPresent()) {
-                        Vers vers =oVers.get();
+                        Vers vers = oVers.get();
                         String mediaTempLocation = "/var/songs/media";
-                        FindLinesInImage images = new FindLinesInImage(vers.getLocation(), mediaTempLocation + "/vers", vers.getSong().getBundle().getName(), vers.getSong().getName(), vers.getSong().getId());
-                
-                        for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions().entrySet()) {
-                                ImageDefinition imageDefinition = entry.getValue();
-                
-                                Line line = new Line();
-                                line.setText(imageDefinition.getFilename());
-                                line.setRank(entry.getKey() + 1);
-                                line.setLocation(imageDefinition.getFilename());
-                                line.setVers(vers);
-                                line.setLocation(imageDefinition.getFilename());
-                                
-                                this.lineService.createLine(line);                                                
+                        try {
+                                FindLinesInImage images = new FindLinesInImage(vers.getLocation(),
+                                                mediaTempLocation + "/vers", vers.getSong().getBundle().getName(),
+                                                vers.getSong().getName(), vers.getSong().getId());
+
+                                for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions()
+                                                .entrySet()) {
+                                        ImageDefinition imageDefinition = entry.getValue();
+
+                                        Line line = new Line();
+                                        line.setText(imageDefinition.getFilename());
+                                        line.setRank(entry.getKey() + 1);
+                                        line.setLocation(imageDefinition.getFilename());
+                                        line.setVers(vers);
+                                        line.setLocation(imageDefinition.getFilename());
+
+                                        this.lineService.createLine(line);
+                                }
+                        } catch (Exception e) {
                         }
                         return vers.getId();
                 }
