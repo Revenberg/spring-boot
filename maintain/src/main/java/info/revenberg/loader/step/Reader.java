@@ -43,12 +43,12 @@ public class Reader implements ItemReader<Long> {
 			String uri = "http://40.122.30.210:8090/rest/v1/vers/" + Long.toString(lastID) + "/next";
 
 			RestTemplate restTemplate = new RestTemplate();
-			id = restTemplate.getForObject(uri, Long.class);
+			lastID = restTemplate.getForObject(uri, Long.class);
 
 		} catch (Exception e) {
 			// Exception handling
 			System.out.println(e.getMessage());
-			id = lastID + 1;
+			lastID = lastID + 1;
 		}
 
 		// Write the content in file
@@ -58,7 +58,7 @@ public class Reader implements ItemReader<Long> {
 			// Exception handling
 		}		
 
-		return id;
+		return lastID;
 
 	}
 
