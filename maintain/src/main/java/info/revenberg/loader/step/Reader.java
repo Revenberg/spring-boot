@@ -45,6 +45,9 @@ public class Reader implements ItemReader<Long> {
 
 			RestTemplate restTemplate = new RestTemplate();
 			lastID = restTemplate.getForObject(uri, Long.class);
+			if (lastID == 0L) {
+				return null;
+			}
 
 		} catch (Exception e) {
 			// Exception handling
