@@ -97,7 +97,7 @@ public class VersController extends AbstractRestHandler {
                 checkResourceFound(oVers);
                 if (oVers.isPresent()) {
                         Vers vers = oVers.get();
-                        if ((vers.getLines() == null) && (vers.getLines().isEmpty())) {
+                        if ((vers.getLines() == null) || (!vers.getLines().isEmpty())) {
                                 String mediaTempLocation = "/var/songs/media";
                                 try {
                                         FindLinesInImage images = new FindLinesInImage(vers.getLocation(),
