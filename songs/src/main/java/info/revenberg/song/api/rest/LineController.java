@@ -109,7 +109,6 @@ public class LineController extends AbstractRestHandler {
                 this.lineService.deleteAll();
         }       
 
-
         @RequestMapping(value = "/{id}/image", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
         @ResponseStatus(HttpStatus.OK)
         @ApiOperation(value = "Get image")

@@ -97,40 +97,44 @@ public class VersController extends AbstractRestHandler {
                 checkResourceFound(oVers);
                 if (oVers.isPresent()) {
                         Vers vers = oVers.get();
-                        String mediaTempLocation = "/var/songs/media";
-                        try {
-                                FindLinesInImage images = new FindLinesInImage(vers.getLocation(),
-                                                mediaTempLocation + "/vers", vers.getSong().getBundle().getName(),
-                                                vers.getSong().getName(), vers.getSong().getId());
+                        if (vers.getLines().isEmpty()) {
+                                String mediaTempLocation = "/var/songs/media";
+                                try {
+                                        FindLinesInImage images = new FindLinesInImage(vers.getLocation(),
+                                                        mediaTempLocation + "/vers",
+                                                        vers.getSong().getBundle().getName(), vers.getSong().getName(),
+                                                        vers.getSong().getId());
 
-                                for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions()
-                                                .entrySet()) {
-                                        ImageDefinition imageDefinition = entry.getValue();
+                                        for (Map.Entry<Integer, ImageDefinition> entry : images.getImageDefinitions()
+                                                        .entrySet()) {
+                                                ImageDefinition imageDefinition = entry.getValue();
 
-                                        Line line = new Line();
-                                        line.setText(imageDefinition.getFilename());
-                                        line.setRank(entry.getKey() + 1);
-                                        line.setLocation(imageDefinition.getFilename());
-                                        line.setVers(vers);
-                                        line.setLocation(imageDefinition.getFilename());
+                                                Line line = new Line();
+                                                line.setText(imageDefinition.getFilename());
+                                                line.setRank(entry.getKey() + 1);
+                                                line.setLocation(imageDefinition.getFilename());
+                                                line.setVers(vers);
+                                                line.setLocation(imageDefinition.getFilename());
 
-                                        this.lineService.createLine(line);
-                                        line = null;
+                                                this.lineService.createLine(line);
+                                                line = null;
+                                        }
+                                        Runtime runtime = Runtime.getRuntime();
+                                        NumberFormat format = NumberFormat.getInstance();
+
+                                        long maxMemory = runtime.maxMemory();
+                                        long allocatedMemory = runtime.totalMemory();
+                                        long freeMemory = runtime.freeMemory();
+
+                                        System.out.println("free memory: " + format.format(freeMemory / 1024));
+                                        System.out.println(
+                                                        "allocated memory: " + format.format(allocatedMemory / 1024));
+                                        System.out.println("max memory: " + format.format(maxMemory / 1024));
+                                        System.out.println("total free memory: " + format
+                                                        .format((freeMemory + (maxMemory - allocatedMemory)) / 1024));
+                                } catch (Exception e) {
+                                        throw new DataFormatException("Failing creating files");
                                 }
-                                Runtime runtime = Runtime.getRuntime();
-                                NumberFormat format = NumberFormat.getInstance();
-
-                                long maxMemory = runtime.maxMemory();
-                                long allocatedMemory = runtime.totalMemory();
-                                long freeMemory = runtime.freeMemory();
-
-                                System.out.println("free memory: " + format.format(freeMemory / 1024));
-                                System.out.println("allocated memory: " + format.format(allocatedMemory / 1024));
-                                System.out.println("max memory: " + format.format(maxMemory / 1024));
-                                System.out.println("total free memory: "
-                                                + format.format((freeMemory + (maxMemory - allocatedMemory)) / 1024));
-                        } catch (Exception e) {
-                                throw new DataFormatException("Failing creating files");
                         }
                         return vers.getId();
                 }
