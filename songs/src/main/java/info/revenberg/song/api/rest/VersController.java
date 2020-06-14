@@ -33,6 +33,7 @@ import java.awt.RenderingHints;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import info.revenberg.domain.line.ImageDefinition;
 
@@ -90,6 +91,7 @@ public class VersController extends AbstractRestHandler {
         @RequestMapping(value = "/{id}/next", method = RequestMethod.GET, produces = { "application/json" })
         @ResponseStatus(HttpStatus.OK)
         @ApiOperation(value = "Get a next id", notes = "You have to provide a valid vers ID.")
+        @Transactional
         public @ResponseBody Long getNextId(
                         @ApiParam(value = "The ID of the vers.", required = true) @PathVariable("id") Long id,
                         HttpServletRequest request, HttpServletResponse response) throws Exception {
