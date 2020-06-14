@@ -16,14 +16,14 @@ import java.text.NumberFormat;
 public class Reader implements ItemReader<Long> {
 
 	private static Long lastID = 0L;
-
+	private static int error = 3;
+	
 	@Override
 	public synchronized Long read() {
 		String directory = "/var/songs";
 		String fileName = "maintain.next";
 		String absolutePath = directory + File.separator + fileName;
-		Long id = 0L;
-
+		
 		if (lastID == 0L) {
 			// Read the content from file
 			try (BufferedReader bufferedReader = new BufferedReader(new FileReader(absolutePath))) {
@@ -48,11 +48,16 @@ public class Reader implements ItemReader<Long> {
 			if (lastID == 0L) {
 				return null;
 			}
-
+			error = 3;
 		} catch (Exception e) {
+			error = error - 1;
 			// Exception handling
 			System.out.println(e.getMessage());
-			lastID = lastID + 1;
+			if (error <= 0) {
+				return null;
+			} else {
+				lastID = lastID + 1;
+			}
 		}
 
 		// Write the content in file
