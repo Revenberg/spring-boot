@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "..\\uploader"
+		},
+		{
+			"path": "..\\pi-hole"
 		}
 	],
 	"settings": {
