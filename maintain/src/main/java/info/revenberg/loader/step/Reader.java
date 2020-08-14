@@ -26,12 +26,14 @@ public class Reader implements ItemReader<Long> {
 		
 		if (lastID == 0L) {
 			// Read the content from file
+			System.out.println(absolutePath);
 			try (BufferedReader bufferedReader = new BufferedReader(new FileReader(absolutePath))) {
 				String line = bufferedReader.readLine();
 				while (line != null) {
 					System.out.println(line);
 					lastID = Long.valueOf(line);
 					line = bufferedReader.readLine();
+					System.out.println(lastID);
 				}
 			} catch (FileNotFoundException e) {
 				// Exception handling
