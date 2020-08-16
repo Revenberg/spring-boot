@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "..\\pi-hole"
+		},
+		{
+			"path": "..\\power"
 		}
 	],
 	"settings": {
